@@ -12,6 +12,16 @@ server.connection({
   routes: { cors: config.enableCors }
 });
 
+server.route({
+  method: 'GET',
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: 'static'
+    }
+  }
+});
+
 var plugins = require('./plugins');
 server.register(plugins, function (err) {
   if (err) { throw err; }
