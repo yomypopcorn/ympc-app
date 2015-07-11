@@ -66,10 +66,15 @@ exports.register = function (server, options, next) {
     db.unsubscribeShow(username, showId, callback, callback);
   }
 
+  function getFeed (username, callback) {
+    db.getFeed(username, callback);
+  }
+
   server.method('db.getShows', getShows);
   server.method('db.getUserShows', getUserShows);
   server.method('db.subscribeShow', subscribeShow);
   server.method('db.unsubscribeShow', unsubscribeShow);
+  server.method('db.getFeed', getFeed);
 
   next();
 };
