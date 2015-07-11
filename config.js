@@ -4,7 +4,11 @@ var defaults = {
   port: 9987,
   enableCors: true,
   uri: 'http://localhost:9987',
-  yoApiKey: 'yolo'
+  yoApiKey: 'yolo',
+  redisSocket: null,
+	redisHost: '127.0.0.1',
+	redisPort: 6379,
+	redisPassword: null,
 };
 
 module.exports = require('rc')('yomypopcorn-service', defaults);

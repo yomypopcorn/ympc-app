@@ -8,13 +8,16 @@
   },
   "author": "",
   "dependencies": {
+    "async": "^1.3.0",
     "bistre": "^1.0.1",
     "bole": "^2.0.0",
     "boom": "^2.8.0",
     "hapi": "^8.8.0",
     "hoek": "^2.14.0",
+    "joi": "^6.5.0",
     "rc": "^1.0.3",
-    "request": "^2.58.0"
+    "request": "^2.58.0",
+    "yomypopcorn-dbclient": "git+https://github.com/yomypopcorn/yomypopcorn-dbclient.git#master"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
