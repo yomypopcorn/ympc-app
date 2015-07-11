@@ -320,9 +320,10 @@
 
     var Shows = React.createClass({
       getInitialState(){
+        // (location.search || "").split("?").splice(1)[0].split("=")[1]
         return {
           isSearching: false,
-          userName: (location.search || "").split("?").splice(1)[0].split("=")[1],
+          userName: 'myyouser',
           subscribedShows: [{
             name: 'Game of Thrones', imdb_id: '001'
           }],
