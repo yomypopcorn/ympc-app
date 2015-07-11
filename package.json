@@ -1,15 +1,23 @@
 {
-  "name": "yo-service",
+  "name": "yomypopcorn-service",
   "version": "0.0.1",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.13.1",
+    "bistre": "^1.0.1",
+    "bole": "^2.0.0",
+    "boom": "^2.8.0",
+    "hapi": "^8.8.0",
+    "hoek": "^2.14.0",
+    "rc": "^1.0.3",
     "request": "^2.58.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.3"
   }
 }
