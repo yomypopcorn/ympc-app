@@ -94,9 +94,9 @@ Responds 201
 }
 ```
 
-### DELETE /users/:username/shows?id=showid&token=token
+### DELETE /users/:username/shows/:showid&token=token
 
-Subscribe to a show
+Unsubscribe to a show
 
 Responds 200
 ```json
