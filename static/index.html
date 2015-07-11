@@ -74,6 +74,17 @@
       border: 0px solid transparent;
     }
 
+    .list-item-remove-leave {
+      transform: scale(1);
+      opacity: 1;
+      transition: transform .2s, opacity 0.2s;
+    }
+
+    .list-item-remove-leave.list-item-remove-leave-active {
+      transform: scale(0.5);
+      opacity: 0.01;
+    }
+
     .list-btn {
       text-align: center;
     }
@@ -215,7 +226,8 @@
     var YoMyPopcornApp = React.createClass({
       getInitialState(){
         return {
-          activeScreen: 'shows'
+          activeScreen: 'shows',
+          shows: []
         };
       },
 
@@ -258,7 +270,7 @@
               first_aired: "Now"
             },
             {
-              imdb_id: "0001",
+              imdb_id: "0002",
               title: "Modern Family",
               season: 4,
               episode: 4,
@@ -266,7 +278,7 @@
               first_aired: "Now"
             },
             {
-              imdb_id: "0001",
+              imdb_id: "0003",
               title: "24",
               season: 6,
               episode: 21,
@@ -279,12 +291,7 @@
 
       render(){
         var feedResults = this.state.feed.map(function(item){
-          return <FeedItem
-            title={item.title}
-            season={item.season}
-            episode={item.episode}
-            poster={item.poster}
-          />;
+          return <FeedItem {...item} key={item.imdb_id} />;
         });
 
         return <div>{feedResults}</div>;
@@ -297,8 +304,10 @@
           backgroundImage: ('url('+this.props.poster+')')
         };
 
+        var timeAgo = moment(Date.parse(this.props.first_aired)).fromNow();
+
         return <div className="feed-item">
-          <div className="feed-item-header emerald">2 hours ago</div>
+          <div className="feed-item-header emerald">{timeAgo}</div>
           <div className="feed-item-body" style={localStyle}>
             <div className="shadow">
               <div className="title">{this.props.title}</div>
@@ -312,8 +321,27 @@
     var Shows = React.createClass({
       getInitialState(){
         return {
-          isSearching: false
+          isSearching: false,
+          userName: (location.search || "").split("?").splice(1)[0].split("=")[1],
+          subscribedShows: [{
+            name: 'Game of Thrones', imdb_id: '001'
+          }],
+          shows: [{
+            name: 'Modern Family', imdb_id: '002'
+          }, {
+            name: '24', imdb_id: '003'
+          }]
         }
+      },
+
+      componentDidMount(){
+        $.getJSON('/shows?compact=1').then(function(data){
+          this.setState({shows: data});
+        }.bind(this));
+
+        $.getJSON('/users/'+this.state.userName+'/shows?compact=1').then(function(data){
+          this.setState({subscribedShows: data});
+        }.bind(this));
       },
 
       setSearchActive(){
@@ -324,10 +352,32 @@
         this.setState({isSearching: false});
       },
 
+      addSubscription(show){
+        var shows = this.state.subscribedShows.push(show)
+        // do POST
+      },
+
+      removeSubscription(show){
+        var newSubscriptions = this.state.subscribedShows.filter(function(item){
+          return item.imdb_id !== show.imdb_id;
+        });
+
+        // optimistic remove
+        this.setState({subscribedShows: newSubscriptions});
+
+        // do DELETE on server
+      },
+
       render(){
+        var subscribed = this.state.subscribedShows.map(function(show){
+          show.isSubscribed = true;
+          return show;
+        });
+
+
         var childs = this.state.isSearching ?
-          <Search onSearch={this.search} onCancel={this.setSearchInactive} />
-          : <Subscriptions onAddClicked={this.setSearchActive} />
+          <Search shows={this.state.shows} onSearch={this.search} onCancel={this.setSearchInactive} onAddSubscription={this.addSubscription} onRemoveSubscription={this.removeSubscription}/>
+          : <Subscriptions shows={subscribed} onAddClicked={this.setSearchActive} onAddSubscription={this.addSubscription} onRemoveSubscription={this.removeSubscription} />
 
         return <div>
           {childs}
@@ -338,19 +388,8 @@
     var Search = React.createClass({
       getInitialState(){
         return {
-          shows: [
-            {name: 'Game of Thrones', id: '001'},
-            {name: 'Entourage', id: '002'},
-            {name: 'Lost', id: '003'},
-            {name: 'Babaganoush', id: '004'},
-            {name: 'Weeds', id: '005'}
-          ],
           searchValue: null
         }
-      },
-
-      addSubscription(show){
-        console.log("add", show)
       },
 
       searchInputDidChange(){
@@ -360,14 +399,19 @@
       },
 
       render(){
-        var results = this.state.shows.filter(function(show){
+        var results = this.props.shows.filter(function(show){
           var value = (this.state.searchValue || "").toLowerCase();
           var showName = (show.name || "");
           return showName.toLowerCase().indexOf(value) !== -1;
         }.bind(this));
 
         var listItems = results.map(function(show){
-          return <ListItem name={show.name} isSubscribed={false} onBtnClicked={this.addSubscription} />
+          return <ListItem {...show}
+            isSubscribed={false}
+            onBtnUnsubscribe={this.props.onRemoveSubscription}
+            onBtnSubscribe={this.props.onAddSubscription}
+            key={show.imdb_id}
+          />
         }.bind(this));
 
         var cancel = null;
@@ -386,49 +430,57 @@
     });
 
     var Subscriptions = React.createClass({
-      getDefaultProps(){
-        return {
-          results: [
-            {name: 'Game of Thrones', id: '001'},
-            {name: 'Entourage', id: '002'},
-            {name: 'Weeds', id: '005'}
-          ]
-        }
-      },
-
-      removeSubscription(show){
-        console.log("remove", show)
-      },
-
       render(){
-        var listItems = this.props.results.map(function(show){
+        var listItems = this.props.shows.map(function(show){
           var className = colorNames.shift();
           colorNames.push(className);
 
-          return <ListItem name={show.name} className={className} isSubscribed={true} onBtnClicked={this.removeSubscription} />
+          return <ListItem {...show}
+            className={className}
+            isSubscribed={true}
+            onBtnUnsubscribe={this.props.onRemoveSubscription}
+            onBtnSubscribe={this.props.onAddSubscription}
+            key={show.imdb_id}
+          />
         }.bind(this));
 
+        var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
         return <div>
-          {listItems}
+          <ReactCSSTransitionGroup transitionName="list-item-remove">
+            {listItems}
+          </ReactCSSTransitionGroup>
           <div className="list-btn list-item" onClick={this.props.onAddClicked}>+ Add more shows</div>
         </div>;
       }
     });
 
     var ListItem = React.createClass({
+      getInitialState(){
+        return {
+          isSubscribed: this.props.isSubscribed
+        }
+      },
+
       handleBtnClick(){
-        this.props.onBtnClicked(this.props.name);
+        if(this.state.isSubscribed){
+          this.props.onBtnUnsubscribe(this.props);
+        }
+        else {
+          this.props.onBtnSubscribe(this.props)
+        }
+
+        this.setState({isSubscribed: !this.state.isSubscribed});
       },
 
       render(){
-
         var className = [
           'list-item',
           this.props.className,
           this.props.className ? 'no-border' : ''
         ].join(" ");
 
-        var btn = this.props.isSubscribed ?
+        var btn = this.state.isSubscribed ?
           <div className="btn" onClick={this.handleBtnClick}>Unsubscribe</div>
           : <div className="btn" onClick={this.handleBtnClick}>Subscribe</div>
 
@@ -444,5 +496,7 @@
 </head>
 <body>
   <div id="app"></div>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 </body>
 </html>
