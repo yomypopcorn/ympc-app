@@ -1,12 +1,10 @@
-exports.register = function api (server, options, next) {
+exports.register = function (server, options, next) {
 
   var routes = [
     {
       method: 'GET',
       path: '/hello',
-      handler: function (request, reply) {
-        reply({ hello: 'myfriend' });
-      }
+      handler: require('./hello')
     }
   ];
 

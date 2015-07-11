@@ -1,6 +1,6 @@
 var Yo = require('./yo-api');
 
-exports.register = function Yo (server, options, next) {
+exports.register = function (server, options, next) {
 
   var yo = new Yo(options.apiKey);
 
