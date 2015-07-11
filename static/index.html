@@ -1,0 +1,448 @@
+<html>
+<head>
+  <title>Yomypopcorntime</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+  <script src="https://fb.me/react-with-addons-0.13.3.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+  <style type="text/css">
+    body, html {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 700;
+      background: #924AB0;
+      color: #fff
+    }
+
+    .turquoise {
+      background-color: #1abc9c;
+    }
+
+    .emerald {
+      background-color: #2ecc71;
+    }
+
+    .peter {
+      background-color: #3498db;
+    }
+
+    .asphalt {
+      background-color: #34495e;
+    }
+
+    .green {
+      background-color: #16a085;
+    }
+
+    .sunflower {
+      background-color: #f1c40f;
+    }
+
+    .belize {
+      background-color: #2980b9;
+    }
+
+    .wisteria {
+      background-color: #8e44ad;
+    }
+
+    .alizarin {
+      background-color: #e74c3c;
+    }
+
+    .amethyst {
+      background-color: #9b59b6;
+    }
+
+    .list-item {
+      height: 59px;
+      line-height: 60px;
+      font-size: 19px;
+      box-sizing: border-box;
+      vertical-align: middle;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid #AD6AC9;
+    }
+
+    .list-item:last-child {
+      border-bottom: 1px solid #AD6AC9;
+    }
+
+    .list-item.no-border {
+      border: 0px solid transparent;
+    }
+
+    .list-btn {
+      text-align: center;
+    }
+
+    .list-item-title {
+      white-space: nowrap;
+      margin-right: 80px;
+      margin-left: 24px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .list-item-end {
+      position: absolute;
+      right: 0px;
+      top: 17px;
+      width: 100px;
+    }
+
+    .btn {
+      border: 1px solid #fff;
+      padding: 6px 9px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 1.1em;
+      display: inline-block;
+    }
+
+    input[type="search"] {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 1.5em 1em;
+      border: 0px solid transparent;
+      background: #7E4097;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    ::-webkit-input-placeholder { /* WebKit browsers */
+      color: #fff;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: #fff;
+      opacity: 1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: #fff;
+      opacity: 1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: #fff;
+    }
+
+    .feed-item {
+      margin: 2em;
+    }
+
+    .feed-item-header,
+    .feed-item-footer {
+      height: 60px;
+      font-size: 16px;
+      line-height: 60px;
+      vertical-align: middle;
+      padding: 0 16px;
+    }
+
+    .feed-item-header {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .feed-item-body {
+      height: 280px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+
+    .feed-item-body .title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 1em;
+    }
+
+    .feed-item-footer {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .title-small {
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: 30px;
+    }
+
+    .shadow {
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+      height: 100%;
+      width: 100%;
+    }
+
+    .tabs {
+      overflow: hidden;
+    }
+
+    .tab {
+      width: 50%;
+      float: left;
+      text-align: center;
+      box-sizing: border-box;
+      padding: 1em 0;
+      background: #8E44AD;
+      color: #572B69;
+    }
+
+    .tab.is-active {
+      background-color: #924AB0;
+      color: #fff
+    }
+
+    .search-input {
+      position: relative;
+    }
+
+    .search-cancel {
+      position: absolute;
+      right: 1em;
+      top: 30px;
+      font-size: 36px;
+    }
+
+  </style>
+  <script type="text/jsx">
+    var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
+
+    var YoMyPopcornApp = React.createClass({
+      getInitialState(){
+        return {
+          activeScreen: 'shows'
+        };
+      },
+
+      setFeedActive(){
+        this.setState({activeScreen: 'feed'});
+      },
+
+      setShowsActive(){
+        this.setState({activeScreen: 'shows'});
+      },
+
+      render(){
+        var isFeedActive = this.state.activeScreen == 'feed';
+
+        var isFeedTabActive = isFeedActive ? 'is-active tab' : 'tab';
+        var isShowsTabActive = !isFeedActive ? 'is-active tab' : 'tab'
+
+        var screen = isFeedActive ? <Feed /> : <Shows />;
+
+        return <div>
+          <div className="tabs">
+            <div className={isFeedTabActive} onClick={this.setFeedActive}>Feed</div>
+            <div className={isShowsTabActive} onClick={this.setShowsActive}>Shows</div>
+          </div>
+          {screen}
+        </div>;
+      }
+    });
+
+    var Feed = React.createClass({
+      getInitialState(){
+        return {
+          feed: [
+            {
+              imdb_id: "0001",
+              title: "Game of Thrones",
+              season: 3,
+              episode: 2,
+              poster: "https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg",
+              first_aired: "Now"
+            },
+            {
+              imdb_id: "0001",
+              title: "Modern Family",
+              season: 4,
+              episode: 4,
+              poster: "https://upload.wikimedia.org/wikipedia/en/b/b0/Modern-Familytigtlecard.jpg",
+              first_aired: "Now"
+            },
+            {
+              imdb_id: "0001",
+              title: "24",
+              season: 6,
+              episode: 21,
+              poster: "https://upload.wikimedia.org/wikipedia/commons/3/33/24-Logo.svg",
+              first_aired: "Now"
+            },
+          ]
+        }
+      },
+
+      render(){
+        var feedResults = this.state.feed.map(function(item){
+          return <FeedItem
+            title={item.title}
+            season={item.season}
+            episode={item.episode}
+            poster={item.poster}
+          />;
+        });
+
+        return <div>{feedResults}</div>;
+      }
+    });
+
+    var FeedItem = React.createClass({
+      render(){
+        var localStyle = {
+          backgroundImage: ('url('+this.props.poster+')')
+        };
+
+        return <div className="feed-item">
+          <div className="feed-item-header emerald">2 hours ago</div>
+          <div className="feed-item-body" style={localStyle}>
+            <div className="shadow">
+              <div className="title">{this.props.title}</div>
+            </div>
+          </div>
+          <div className="feed-item-footer emerald">Season {this.props.season}, Episode {this.props.episode}</div>
+        </div>;
+      }
+    });
+
+    var Shows = React.createClass({
+      getInitialState(){
+        return {
+          isSearching: false
+        }
+      },
+
+      setSearchActive(){
+        this.setState({isSearching: true});
+      },
+
+      setSearchInactive(){
+        this.setState({isSearching: false});
+      },
+
+      render(){
+        var childs = this.state.isSearching ?
+          <Search onSearch={this.search} onCancel={this.setSearchInactive} />
+          : <Subscriptions onAddClicked={this.setSearchActive} />
+
+        return <div>
+          {childs}
+        </div>
+      }
+    });
+
+    var Search = React.createClass({
+      getInitialState(){
+        return {
+          shows: [
+            {name: 'Game of Thrones', id: '001'},
+            {name: 'Entourage', id: '002'},
+            {name: 'Lost', id: '003'},
+            {name: 'Babaganoush', id: '004'},
+            {name: 'Weeds', id: '005'}
+          ],
+          searchValue: null
+        }
+      },
+
+      addSubscription(show){
+        console.log("add", show)
+      },
+
+      searchInputDidChange(){
+        var input = React.findDOMNode(this.refs.searchInput);
+        var text = input.value;
+        this.setState({searchValue: text});
+      },
+
+      render(){
+        var results = this.state.shows.filter(function(show){
+          var value = (this.state.searchValue || "").toLowerCase();
+          var showName = (show.name || "");
+          return showName.toLowerCase().indexOf(value) !== -1;
+        }.bind(this));
+
+        var listItems = results.map(function(show){
+          return <ListItem name={show.name} isSubscribed={false} onBtnClicked={this.addSubscription} />
+        }.bind(this));
+
+        var cancel = null;
+        if(this.state.searchValue){
+          cancel = <div className="search-cancel" onClick={this.props.onCancel}>×</div>;
+        }
+
+        return <div>
+          <div className="search-input">
+            {cancel}
+            <input ref="searchInput" className="input-search" type="search" onKeyUp={this.searchInputDidChange} placeholder="Search shows" />
+          </div>
+          {listItems}
+        </div>;
+      }
+    });
+
+    var Subscriptions = React.createClass({
+      getDefaultProps(){
+        return {
+          results: [
+            {name: 'Game of Thrones', id: '001'},
+            {name: 'Entourage', id: '002'},
+            {name: 'Weeds', id: '005'}
+          ]
+        }
+      },
+
+      removeSubscription(show){
+        console.log("remove", show)
+      },
+
+      render(){
+        var listItems = this.props.results.map(function(show){
+          var className = colorNames.shift();
+          colorNames.push(className);
+
+          return <ListItem name={show.name} className={className} isSubscribed={true} onBtnClicked={this.removeSubscription} />
+        }.bind(this));
+
+        return <div>
+          {listItems}
+          <div className="list-btn list-item" onClick={this.props.onAddClicked}>+ Add more shows</div>
+        </div>;
+      }
+    });
+
+    var ListItem = React.createClass({
+      handleBtnClick(){
+        this.props.onBtnClicked(this.props.name);
+      },
+
+      render(){
+
+        var className = [
+          'list-item',
+          this.props.className,
+          this.props.className ? 'no-border' : ''
+        ].join(" ");
+
+        var btn = this.props.isSubscribed ?
+          <div className="btn" onClick={this.handleBtnClick}>Unsubscribe</div>
+          : <div className="btn" onClick={this.handleBtnClick}>Subscribe</div>
+
+        return <div className={className}>
+          <div className="list-item-title">{this.props.name}</div>
+          <div className="list-item-end">{btn}</div>
+        </div>;
+      }
+    });
+
+    React.render(<YoMyPopcornApp />, app);
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
