@@ -50,6 +50,7 @@ Example
     "first_aired":  "releasedate"
   }
 ]
+```
 
 ### GET /users/:username/shows?token=token
 
