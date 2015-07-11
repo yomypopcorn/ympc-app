@@ -54,7 +54,7 @@ Example
 
 ### GET /users/:username/shows?token=token
 
-Get a users feed
+Get a users subscriptions
 
 Responds 200
 
