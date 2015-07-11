@@ -13,13 +13,11 @@ server.connection({
 });
 
 server.route({
-  method: 'GET',
-  path: '/{param*}',
-  handler: {
-    directory: {
-      path: 'static'
+    method: 'GET',
+    path: '/{path*}',
+    handler: {
+        file: 'static/index.html'
     }
-  }
 });
 
 var plugins = require('./plugins');
