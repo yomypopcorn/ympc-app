@@ -16,7 +16,7 @@ server.route({
     method: 'GET',
     path: '/{path*}',
     handler: {
-        file: 'static/index.html'
+        file: 'static/app.html'
     }
 });
 
