@@ -61,13 +61,31 @@ Responds 200
 Example
 
 ```json
-[ "tt2575988", "tt6113213" ]
+[
+  {
+    "imdb_id": "tt2575988",
+    "title":   "Silicon Valley",
+    "rating":  7.3
+  },
+  {
+    "imdb_id": "tt7392128",
+    "title":   "Example",
+    "rating":  1.2
+  }
+]
 ```
 
 
-### POST /users/:username/shows?id=showid&token=token
+### POST /users/:username/shows?token=token
 
 Subscribe to a new show
+
+Request body:
+```json
+{ "imdb_id": "tt2575988" }
+```
+
+
 
 Responds 201
 ```json
