@@ -16,12 +16,19 @@ Get all shows compacted.
 
 Responds with 200
 
-Example
 ```json
-{
- "tt2575988": "Silicon Valley",
- "tt6113213": "Example"
-}
+[
+  {
+    "imdb_id": "tt2575988",
+    "title":   "Silicon Valley",
+    "rating":  7.3
+  },
+  {
+    "imdb_id": "tt7392128",
+    "title":   "Example",
+    "rating":  1.2
+  }
+]
 ```
 
 
@@ -35,7 +42,7 @@ Example
 ```json
 [
   {
-    "imdb_id"   "episode id",
+    "imdb_id":   "episode id",
     "title":    "title",
     "season":   3,
     "episode":  2,
@@ -51,13 +58,11 @@ Get a users feed
 Responds 200
 
 Example
+
 ```json
-{
-  "imdb_id": "tt2575988",
-  "title":   "Silicon Valley",
-  "rating: 7.3
-}
+[ "tt2575988", "tt6113213" ]
 ```
+
 
 ### POST /users/:username/shows?id=showid&token=token
 
