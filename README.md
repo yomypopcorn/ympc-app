@@ -35,15 +35,14 @@ Example
 ```json
 [
   {
-    "id":       "episode id",
+    "imdb_id"   "episode id",
     "title":    "title",
-    "image":    "image url",
-    "season":   "season",
-    "episode":  "episode",
-    "release":  "releasedate"
+    "season":   3,
+    "episode":  2,
+    "poster":   "image url",
+    "first_aired":  "releasedate"
   }
 ]
-```
 
 ### GET /users/:username/shows?token=token
 
@@ -54,8 +53,9 @@ Responds 200
 Example
 ```json
 {
- "tt2575988": "Silicon Valley",
- "tt6113213": "Example"
+  "imdb_id": "tt2575988",
+  "title":   "Silicon Valley",
+  "rating: 7.3
 }
 ```
 
