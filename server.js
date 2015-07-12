@@ -13,28 +13,11 @@ server.connection({
   routes: { cors: config.enableCors }
 });
 
-var appHandler = { file: path.join(__dirname, 'static/app.html') };
-
-server.route({
-    method: 'GET',
-    path: '/feed',
-    handler: appHandler
-});
-
-server.route({
-    method: 'GET',
-    path: '/shows',
-    handler: appHandler
-});
-
 server.route({
   method: 'GET',
   path: '/{path*}',
   handler: {
-    directory: {
-      path: path.join(__dirname, 'static'),
-      listing: false
-    }
+    file: path.join(__dirname, 'static/index.html')
   }
 });
 
