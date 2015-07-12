@@ -234,7 +234,6 @@
       getInitialState(){
         return {
           activeScreen: this.getScreenNameFromURL(),
-          shows: [],
           userName: this.getUsernameFromURL()
         };
       },
@@ -288,7 +287,7 @@
       },
 
       componentDidMount(){
-        $.get(apiBase+'/users/' + this.props.userName + '/feeds').then(function(data){
+        $.get(apiBase+'/users/' + this.props.userName + '/feed').then(function(data){
           this.setState({feed: data});
         }.bind(this));
       },
