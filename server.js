@@ -12,12 +12,29 @@ server.connection({
   routes: { cors: config.enableCors }
 });
 
+var appHandler = { file: 'static/app.html' };
+
 server.route({
     method: 'GET',
-    path: '/{path*}',
-    handler: {
-        file: 'static/app.html'
+    path: '/feeds',
+    handler: appHandler
+});
+
+server.route({
+    method: 'GET',
+    path: '/shows',
+    handler: appHandler
+});
+
+server.route({
+  method: 'GET',
+  path: '/{path*}',
+  handler: {
+    directory: {
+      path: 'static',
+      listing: false
     }
+  }
 });
 
 var plugins = require('./plugins');
