@@ -3,13 +3,15 @@ var log = require('bole')('api');
 
 module.exports = function (request, reply) {
 
-  var showId = request.params.imdb_id;
-  var username = request.params.username;
-  var unsubscribeShow = request.server.methods.db.unsubscribeShow;
+  var username = request.query.username;
+  var sendLink = request.server.methods.yo.sendLink;
 
-  unsubscribeShow(username, showId, function (err) {
+  var feedsLink = 'http://yomypopcorn.com/feed?username=' + username;
+
+  sendLink(username, feedsLink, function (err) {
     if (err) {
       log.error(err);
+
       return reply(boom.badImplementation());
     }
 

@@ -47,6 +47,19 @@ exports.register = function (server, options, next) {
       handler: require('./user-unsubscribe-show')
     },
 
+    {
+      method: 'GET',
+      path: '/api/yo',
+      handler: require('./receive-yo'),
+      config: {
+        validate: {
+          query: {
+            username: Joi.string().required()
+          }
+        }
+      }
+    },
+
   ];
 
   server.route(routes);
