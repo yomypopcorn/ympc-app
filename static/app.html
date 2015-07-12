@@ -302,7 +302,7 @@
           emptyState = <div className="empty-state">Nothing here yet...</div>;
         }
 
-        return <div>{emptyState || feedResults}</div>;
+        return <div>{emptyState || feedResults}</div>;
       }
     });
 
@@ -478,12 +478,13 @@
         }
 
         var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+        var addText = listItems.length === 0 ? '+ Add your first show' : '+ Add more shows';
 
         return <div>
           <ReactCSSTransitionGroup transitionName="list-item-remove">
             {emptyState || listItems}
           </ReactCSSTransitionGroup>
-          <div className="list-btn list-item" onClick={this.props.onAddClicked}>+ Add more shows</div>
+          <div className="list-btn list-item" onClick={this.props.onAddClicked}>{addText}</div>
         </div>;
       }
     });
