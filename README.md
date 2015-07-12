@@ -10,7 +10,7 @@ token: a token specific for each user. sha1(username + YO_APIKEY).substr(0, 16)
        its submitted as html tag attribute: x-token, <html x-token="a1b5....
 
 ```
-### GET /shows?compact=1
+### GET /api/shows?compact=1
 
 Get all shows compacted.
 
@@ -32,7 +32,7 @@ Responds with 200
 ```
 
 
-### GET /users/:username/feed?token=token
+### GET /api/users/:username/feed?token=token
 
 Get a users feed
 
@@ -52,7 +52,7 @@ Example
 ]
 ```
 
-### GET /users/:username/shows?token=token
+### GET /api/users/:username/shows?token=token
 
 Get a users subscriptions
 
@@ -76,7 +76,7 @@ Example
 ```
 
 
-### POST /users/:username/shows?token=token
+### POST /api/users/:username/shows?token=token
 
 Subscribe to a new show
 
@@ -94,7 +94,7 @@ Responds 201
 }
 ```
 
-### DELETE /users/:username/shows/:showid&token=token
+### DELETE /api/users/:username/shows/:showid&token=token
 
 Unsubscribe to a show
 

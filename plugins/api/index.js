@@ -6,31 +6,31 @@ exports.register = function (server, options, next) {
 
     {
       method: 'GET',
-      path: '/hello',
+      path: '/api/hello',
       handler: require('./hello')
     },
 
     {
       method: 'GET',
-      path: '/shows',
+      path: '/api/shows',
       handler: require('./get-shows')
     },
 
     {
       method: 'GET',
-      path: '/users/{username}/feed',
+      path: '/api/users/{username}/feed',
       handler: require('./user-get-feed')
     },
 
     {
       method: 'GET',
-      path: '/users/{username}/shows',
+      path: '/api/users/{username}/shows',
       handler: require('./user-get-shows')
     },
 
     {
       method: 'POST',
-      path: '/users/{username}/shows',
+      path: '/api/users/{username}/shows',
       handler: require('./user-subscribe-show'),
       config: {
         validate: {
@@ -43,7 +43,7 @@ exports.register = function (server, options, next) {
 
     {
       method: 'DELETE',
-      path: '/users/{username}/shows/{imdb_id}',
+      path: '/api/users/{username}/shows/{imdb_id}',
       handler: require('./user-unsubscribe-show')
     },
 
