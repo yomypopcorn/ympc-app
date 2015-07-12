@@ -376,7 +376,7 @@
         // optimistic remove
         this.setState({subscribedShows: newSubscriptions});
 
-        var url = [apiBase, '/users', this.state.userName, '/shows/', show.imdb_id].join("");
+        var url = [apiBase, '/users/', this.state.userName, '/shows/', show.imdb_id].join("");
 
         $.ajax({
           type: "DELETE",
