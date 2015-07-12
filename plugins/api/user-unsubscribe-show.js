@@ -1,3 +1,6 @@
+var boom = require('boom');
+var log = require('bole')('api');
+
 module.exports = function (request, reply) {
 
   var showId = request.params.imdb_id;
