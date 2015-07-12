@@ -44,14 +44,7 @@ exports.register = function (server, options, next) {
     {
       method: 'DELETE',
       path: '/api/users/{username}/shows/{imdb_id}',
-      handler: require('./user-unsubscribe-show'),
-      config: {
-        validate: {
-          query: {
-            id: Joi.string().required()
-          }
-        }
-      }
+      handler: require('./user-unsubscribe-show')
     },
 
     {
