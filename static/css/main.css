@@ -11,7 +11,7 @@ body { font-size: 1em; line-height: 1.4; }
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 img { vertical-align: middle; }
 a{ text-decoration: none; }
-body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing: antialiased; font-smooth: always; rgba(0,0,0,0.004);}
+body { font-family: 'Montserrat', sans-serif;  -webkit-font-smoothing: antialiased; font-smooth: always; rgba(0,0,0,0.004);}
 .wrapper { width: 92%; margin: 0 4%; }
 
 
@@ -22,8 +22,8 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 
 
 .header-container {
-    background: #9B59B6; /* Adjust Background colour of header */
-    color: #ffffff;  /* Adjust colour of header text */
+    background: #9A58B5; /* Adjust Background colour of header */
+    color: #FADC66;  /* Adjust colour of header text */
 	padding-top: 50px;
 }
 
@@ -36,13 +36,15 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	width: 271px; /* Adjust Width for Logo if needed */
 	height: 93px; /* Adjust Height for Logo if needed */
 	margin: 0 auto;
-	color: #ffffff;
+	color: #FADC66;
+	line-height: 82px;
+  	padding-left: 100px;
 }
 
 
 
 .header-container h3{
-	color: #ffffff;
+	color: #FADC66;
 	font-weight: normal;
 	font-size: 1.6em;
 	line-height: 1.2;
@@ -346,6 +348,7 @@ body { font: 16px/26px Helvetica, Helvetica Neue, Arial;  -webkit-font-smoothing
 	.header-container h1{
 		background: url(../img/logo.png) no-repeat 0 0; /* Logo */
 		margin: 0;
+		background-size: 80px;
 	}
 	.ctaColumn { float: right; width: 52%; padding-bottom: 80px; text-align: left; padding-top: 70px; }
 	.signup:after{ right: 15%; }
