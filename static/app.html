@@ -360,7 +360,7 @@
         var url = [apiBase, '/users/', this.state.userName, '/shows'].join("");
 
         $.ajax({
-          type: "DELETE",
+          type: "POST",
           url: url,
           data: { imdb_id: show.imdb_id },
           success: function(){},
@@ -376,7 +376,7 @@
         // optimistic remove
         this.setState({subscribedShows: newSubscriptions});
 
-        var url = [apiBase, '/users', this.state.userName, '/shows?id', show.imdb_id].join("");
+        var url = [apiBase, '/users', this.state.userName, '/shows?id=', show.imdb_id].join("");
 
         $.ajax({
           type: "DELETE",
