@@ -6,7 +6,7 @@ module.exports = function (request, reply) {
   var username = request.query.username;
   var sendLink = request.server.methods.yo.sendLink;
 
-  var feedsLink = 'http://yomypopcorn.com/feed?username=' + username;
+  var feedsLink = 'http://app.yomypopcorn.com/feed?username=' + username;
 
   sendLink(username, feedsLink, function (err) {
     if (err) {
