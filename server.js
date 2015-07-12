@@ -17,7 +17,7 @@ var appHandler = { file: path.join(__dirname, 'static/app.html') };
 
 server.route({
     method: 'GET',
-    path: '/feeds',
+    path: '/feed',
     handler: appHandler
 });
 
