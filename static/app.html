@@ -228,13 +228,14 @@
   </style>
   <script type="text/jsx">
     var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
-    var apiBase = 'http://localhost:9987/api';
+    var apiBase = 'http://yomypopcorn.com/api';
 
     var YoMyPopcornApp = React.createClass({
       getInitialState(){
         return {
           activeScreen: this.getScreenNameFromURL(),
-          shows: []
+          shows: [],
+          userName: this.getUsernameFromURL()
         };
       },
 
@@ -250,13 +251,24 @@
         this.setState({activeScreen: 'shows'});
       },
 
+      getUsernameFromURL(){
+        var params = (location.search || "?").split("?").splice(1)[0];
+        var parts = params.split("=");
+
+        if(parts.length > 1){
+          return parts[1];
+        }
+
+        return 'crap_unknown_username';
+      },
+
       render(){
         var isFeedActive = this.state.activeScreen == 'feed';
 
         var isFeedTabActive = isFeedActive ? 'is-active tab' : 'tab';
         var isShowsTabActive = !isFeedActive ? 'is-active tab' : 'tab'
 
-        var screen = isFeedActive ? <Feed /> : <Shows />;
+        var screen = isFeedActive ? <Feed userName={this.state.userName} /> : <Shows userName={this.state.userName} />;
 
         return <div>
           <div className="tabs">
@@ -271,33 +283,14 @@
     var Feed = React.createClass({
       getInitialState(){
         return {
-          feed: [
-            {
-              imdb_id: "0001",
-              title: "Game of Thrones",
-              season: 3,
-              episode: 2,
-              poster: "https://upload.wikimedia.org/wikipedia/en/d/d8/Game_of_Thrones_title_card.jpg",
-              first_aired: "Now"
-            },
-            {
-              imdb_id: "0002",
-              title: "Modern Family",
-              season: 4,
-              episode: 4,
-              poster: "https://upload.wikimedia.org/wikipedia/en/b/b0/Modern-Familytigtlecard.jpg",
-              first_aired: "Now"
-            },
-            {
-              imdb_id: "0003",
-              title: "24",
-              season: 6,
-              episode: 21,
-              poster: "https://upload.wikimedia.org/wikipedia/commons/3/33/24-Logo.svg",
-              first_aired: "Now"
-            },
-          ]
+          feed: []
         }
+      },
+
+      componentDidMount(){
+        $.get(apiBase+'/users/' + this.props.userName + '/feeds').then(function(data){
+          this.setState({feed: data});
+        }.bind(this));
       },
 
       render(){
@@ -331,10 +324,9 @@
 
     var Shows = React.createClass({
       getInitialState(){
-        // (location.search || "").split("?").splice(1)[0].split("=")[1]
         return {
           isSearching: false,
-          userName: 'myyouser',
+          userName: this.props.userName,
           subscribedShows: [],
           shows: []
         }
@@ -359,8 +351,16 @@
       },
 
       addSubscription(show){
-        var shows = this.state.subscribedShows.push(show)
-        // do POST
+        var shows = this.state.subscribedShows.push(show);
+        var url = [apiBase, '/users/', this.state.userName, '/shows'].join("");
+
+        $.ajax({
+          type: "DELETE",
+          url: url,
+          data: { imdb_id: show.imdb_id },
+          success: function(){},
+          dataType: 'json'
+        });
       },
 
       removeSubscription(show){
@@ -371,7 +371,15 @@
         // optimistic remove
         this.setState({subscribedShows: newSubscriptions});
 
-        // do DELETE on server
+        var url = [apiBase, '/users', this.state.userName, '/shows?id', show.imdb_id].join("");
+
+        $.ajax({
+          type: "DELETE",
+          url: url,
+          data: {},
+          success: function(){},
+          dataType: 'json'
+        });
       },
 
       render(){
@@ -506,7 +514,7 @@
           : <div className="btn" onClick={this.handleBtnClick}>Subscribe</div>
 
         return <div className={className}>
-          <div className="list-item-title">{this.props.name}</div>
+          <div className="list-item-title">{this.props.title}</div>
           <div className="list-item-end">{btn}</div>
         </div>;
       }
