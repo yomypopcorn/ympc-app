@@ -54,7 +54,8 @@ exports.register = function (server, options, next) {
       config: {
         validate: {
           query: {
-            username: Joi.string().required()
+            username: Joi.string().required(),
+            user_ip: Joi.string().optional()
           }
         }
       }
