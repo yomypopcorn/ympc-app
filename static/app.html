@@ -222,13 +222,18 @@
   </style>
   <script type="text/jsx">
     var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
+    var apiBase = 'http://localhost:9987/api';
 
     var YoMyPopcornApp = React.createClass({
       getInitialState(){
         return {
-          activeScreen: 'shows',
+          activeScreen: this.getScreenNameFromURL(),
           shows: []
         };
+      },
+
+      getScreenNameFromURL(){
+        return location.pathname.replace("/", "") === "shows" ? "shows" : "feed";
       },
 
       setFeedActive(){
@@ -324,23 +329,17 @@
         return {
           isSearching: false,
           userName: 'myyouser',
-          subscribedShows: [{
-            name: 'Game of Thrones', imdb_id: '001'
-          }],
-          shows: [{
-            name: 'Modern Family', imdb_id: '002'
-          }, {
-            name: '24', imdb_id: '003'
-          }]
+          subscribedShows: [],
+          shows: []
         }
       },
 
       componentDidMount(){
-        $.getJSON('/shows?compact=1').then(function(data){
+        $.getJSON(apiBase+'/shows?compact=1').then(function(data){
           this.setState({shows: data});
         }.bind(this));
 
-        $.getJSON('/users/'+this.state.userName+'/shows?compact=1').then(function(data){
+        $.getJSON(apiBase+'/users/'+this.state.userName+'/shows?compact=1').then(function(data){
           this.setState({subscribedShows: data});
         }.bind(this));
       },
@@ -374,7 +373,6 @@
           show.isSubscribed = true;
           return show;
         });
-
 
         var childs = this.state.isSearching ?
           <Search shows={this.state.shows} onSearch={this.search} onCancel={this.setSearchInactive} onAddSubscription={this.addSubscription} onRemoveSubscription={this.removeSubscription}/>
