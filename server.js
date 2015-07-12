@@ -1,3 +1,4 @@
+var path = require('path');
 var hapi = require('hapi');
 var bole = require('bole');
 var log = bole('server');
@@ -12,7 +13,7 @@ server.connection({
   routes: { cors: config.enableCors }
 });
 
-var appHandler = { file: 'static/app.html' };
+var appHandler = { file: path.join(__dirname, 'static/app.html') };
 
 server.route({
     method: 'GET',
@@ -31,7 +32,7 @@ server.route({
   path: '/{path*}',
   handler: {
     directory: {
-      path: 'static',
+      path: path.join(__dirname, 'static'),
       listing: false
     }
   }
