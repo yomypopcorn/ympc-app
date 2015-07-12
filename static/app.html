@@ -219,6 +219,12 @@
       font-size: 36px;
     }
 
+    .empty-state {
+      padding: 2em;
+      text-align: center;
+      opacity: 0.5;
+    }
+
   </style>
   <script type="text/jsx">
     var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
@@ -397,6 +403,11 @@
         this.setState({searchValue: text});
       },
 
+      componentDidMount(){
+        var input = React.findDOMNode(this.refs.searchInput);
+        $(input).focus();
+      },
+
       render(){
         var results = this.props.shows.filter(function(show){
           var value = (this.state.searchValue || "").toLowerCase();
@@ -418,12 +429,17 @@
           cancel = <div className="search-cancel" onClick={this.props.onCancel}>×</div>;
         }
 
+        var emptyState = null;
+        if(listItems.length === 0){
+          emptyState = <div className="empty-state">Uhm..shows are still loading...</div>;
+        }
+
         return <div>
           <div className="search-input">
             {cancel}
             <input ref="searchInput" className="input-search" type="search" onKeyUp={this.searchInputDidChange} placeholder="Search shows" />
           </div>
-          {listItems}
+          {emptyState || listItems}
         </div>;
       }
     });
@@ -443,11 +459,17 @@
           />
         }.bind(this));
 
+        var emptyState = null;
+
+        if(listItems.length === 0){
+          emptyState = <div className="empty-state">Get started by adding your favorite shows. Tap below!</div>;
+        }
+
         var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
         return <div>
           <ReactCSSTransitionGroup transitionName="list-item-remove">
-            {listItems}
+            {emptyState || listItems}
           </ReactCSSTransitionGroup>
           <div className="list-btn list-item" onClick={this.props.onAddClicked}>+ Add more shows</div>
         </div>;
