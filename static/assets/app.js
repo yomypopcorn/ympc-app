@@ -1,9 +1,13 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
 var apiBase = '/api';
 
-var YoMyPopcornApp = React.createClass({ displayName: 'YoMyPopcornApp',
+var YoMyPopcornApp = React.createClass({
+  displayName: 'YoMyPopcornApp',
+
   getInitialState: function getInitialState() {
     return {
       activeScreen: this.getScreenNameFromURL(),
@@ -42,11 +46,31 @@ var YoMyPopcornApp = React.createClass({ displayName: 'YoMyPopcornApp',
 
     var screen = isFeedActive ? React.createElement(Feed, { userName: this.state.userName }) : React.createElement(Shows, { userName: this.state.userName });
 
-    return React.createElement('div', null, React.createElement('div', { className: 'tabs' }, React.createElement('div', { className: isFeedTabActive, onClick: this.setFeedActive }, 'Feed'), React.createElement('div', { className: isShowsTabActive, onClick: this.setShowsActive }, 'Shows')), screen);
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'div',
+        { className: 'tabs' },
+        React.createElement(
+          'div',
+          { className: isFeedTabActive, onClick: this.setFeedActive },
+          'Feed'
+        ),
+        React.createElement(
+          'div',
+          { className: isShowsTabActive, onClick: this.setShowsActive },
+          'Shows'
+        )
+      ),
+      screen
+    );
   }
 });
 
-var Feed = React.createClass({ displayName: 'Feed',
+var Feed = React.createClass({
+  displayName: 'Feed',
+
   getInitialState: function getInitialState() {
     return {
       feed: []
@@ -61,19 +85,29 @@ var Feed = React.createClass({ displayName: 'Feed',
 
   render: function render() {
     var feedResults = this.state.feed.map(function (item) {
-      return React.createElement(FeedItem, React.__spread({}, item, { key: item.imdb_id }));
+      return React.createElement(FeedItem, _extends({}, item, { key: item.imdb_id }));
     });
 
     var emptyState = null;
     if (feedResults.length === 0) {
-      emptyState = React.createElement('div', { className: 'empty-state' }, 'Nothing here yet...');
+      emptyState = React.createElement(
+        'div',
+        { className: 'empty-state' },
+        'Nothing here yet...'
+      );
     }
 
-    return React.createElement('div', null, emptyState || feedResults);
+    return React.createElement(
+      'div',
+      null,
+      emptyState || feedResults
+    );
   }
 });
 
-var FeedItem = React.createClass({ displayName: 'FeedItem',
+var FeedItem = React.createClass({
+  displayName: 'FeedItem',
+
   render: function render() {
     var localStyle = {
       backgroundImage: 'url(' + this.props.poster + ')'
@@ -81,11 +115,42 @@ var FeedItem = React.createClass({ displayName: 'FeedItem',
 
     var timeAgo = moment(Date.parse(this.props.first_aired)).fromNow();
 
-    return React.createElement('div', { className: 'feed-item' }, React.createElement('div', { className: 'feed-item-header emerald' }, timeAgo), React.createElement('div', { className: 'feed-item-body', style: localStyle }, React.createElement('div', { className: 'shadow' }, React.createElement('div', { className: 'title' }, this.props.title))), React.createElement('div', { className: 'feed-item-footer emerald' }, 'Season ', this.props.season, ', Episode ', this.props.episode));
+    return React.createElement(
+      'div',
+      { className: 'feed-item' },
+      React.createElement(
+        'div',
+        { className: 'feed-item-header emerald' },
+        timeAgo
+      ),
+      React.createElement(
+        'div',
+        { className: 'feed-item-body', style: localStyle },
+        React.createElement(
+          'div',
+          { className: 'shadow' },
+          React.createElement(
+            'div',
+            { className: 'title' },
+            this.props.title
+          )
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'feed-item-footer emerald' },
+        'Season ',
+        this.props.season,
+        ', Episode ',
+        this.props.episode
+      )
+    );
   }
 });
 
-var Shows = React.createClass({ displayName: 'Shows',
+var Shows = React.createClass({
+  displayName: 'Shows',
+
   getInitialState: function getInitialState() {
     return {
       isSearching: false,
@@ -153,11 +218,17 @@ var Shows = React.createClass({ displayName: 'Shows',
 
     var childs = this.state.isSearching ? React.createElement(Search, { shows: this.state.shows, onSearch: this.search, onCancel: this.setSearchInactive, onAddSubscription: this.addSubscription, onRemoveSubscription: this.removeSubscription }) : React.createElement(Subscriptions, { shows: subscribed, onAddClicked: this.setSearchActive, onAddSubscription: this.addSubscription, onRemoveSubscription: this.removeSubscription });
 
-    return React.createElement('div', null, childs);
+    return React.createElement(
+      'div',
+      null,
+      childs
+    );
   }
 });
 
-var Search = React.createClass({ displayName: 'Search',
+var Search = React.createClass({
+  displayName: 'Search',
+
   getInitialState: function getInitialState() {
     return {
       searchValue: null
@@ -183,53 +254,96 @@ var Search = React.createClass({ displayName: 'Search',
     }).bind(this));
 
     var listItems = results.map((function (show) {
-      return React.createElement(ListItem, React.__spread({}, show, { isSubscribed: false,
+      return React.createElement(ListItem, _extends({}, show, {
+        isSubscribed: false,
         onBtnUnsubscribe: this.props.onRemoveSubscription,
         onBtnSubscribe: this.props.onAddSubscription,
-        key: show.imdb_id }));
+        key: show.imdb_id
+      }));
     }).bind(this));
 
     var cancel = null;
     if (this.state.searchValue) {
-      cancel = React.createElement('div', { className: 'search-cancel', onClick: this.props.onCancel }, '×');
+      cancel = React.createElement(
+        'div',
+        { className: 'search-cancel', onClick: this.props.onCancel },
+        '×'
+      );
     }
 
     var emptyState = null;
     if (listItems.length === 0) {
-      emptyState = React.createElement('div', { className: 'empty-state' }, 'Uhm..shows are still loading...');
+      emptyState = React.createElement(
+        'div',
+        { className: 'empty-state' },
+        'Uhm..shows are still loading...'
+      );
     }
 
-    return React.createElement('div', null, React.createElement('div', { className: 'search-input' }, cancel, React.createElement('input', { ref: 'searchInput', className: 'input-search', type: 'search', onKeyUp: this.searchInputDidChange, placeholder: 'Search shows' })), emptyState || listItems);
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'div',
+        { className: 'search-input' },
+        cancel,
+        React.createElement('input', { ref: 'searchInput', className: 'input-search', type: 'search', onKeyUp: this.searchInputDidChange, placeholder: 'Search shows' })
+      ),
+      emptyState || listItems
+    );
   }
 });
 
-var Subscriptions = React.createClass({ displayName: 'Subscriptions',
+var Subscriptions = React.createClass({
+  displayName: 'Subscriptions',
+
   render: function render() {
     var listItems = this.props.shows.map((function (show) {
       var className = colorNames.shift();
       colorNames.push(className);
 
-      return React.createElement(ListItem, React.__spread({}, show, { className: className,
+      return React.createElement(ListItem, _extends({}, show, {
+        className: className,
         isSubscribed: true,
         onBtnUnsubscribe: this.props.onRemoveSubscription,
         onBtnSubscribe: this.props.onAddSubscription,
-        key: show.imdb_id }));
+        key: show.imdb_id
+      }));
     }).bind(this));
 
     var emptyState = null;
 
     if (listItems.length === 0) {
-      emptyState = React.createElement('div', { className: 'empty-state' }, 'Get started by adding your favorite shows. Tap below!');
+      emptyState = React.createElement(
+        'div',
+        { className: 'empty-state' },
+        'Get started by adding your favorite shows. Tap below!'
+      );
     }
 
     var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
     var addText = listItems.length === 0 ? '+ Add your first show' : '+ Add more shows';
 
-    return React.createElement('div', null, React.createElement(ReactCSSTransitionGroup, { transitionName: 'list-item-remove' }, emptyState || listItems), React.createElement('div', { className: 'list-btn list-item', onClick: this.props.onAddClicked }, addText));
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        ReactCSSTransitionGroup,
+        { transitionName: 'list-item-remove' },
+        emptyState || listItems
+      ),
+      React.createElement(
+        'div',
+        { className: 'list-btn list-item', onClick: this.props.onAddClicked },
+        addText
+      )
+    );
   }
 });
 
-var ListItem = React.createClass({ displayName: 'ListItem',
+var ListItem = React.createClass({
+  displayName: 'ListItem',
+
   getInitialState: function getInitialState() {
     return {
       isSubscribed: this.props.isSubscribed
@@ -249,9 +363,30 @@ var ListItem = React.createClass({ displayName: 'ListItem',
   render: function render() {
     var className = ['list-item', this.props.className, this.props.className ? 'no-border' : ''].join(' ');
 
-    var btn = this.state.isSubscribed ? React.createElement('div', { className: 'btn', onClick: this.handleBtnClick }, 'Unsubscribe') : React.createElement('div', { className: 'btn', onClick: this.handleBtnClick }, 'Subscribe');
+    var btn = this.state.isSubscribed ? React.createElement(
+      'div',
+      { className: 'btn', onClick: this.handleBtnClick },
+      'Unsubscribe'
+    ) : React.createElement(
+      'div',
+      { className: 'btn', onClick: this.handleBtnClick },
+      'Subscribe'
+    );
 
-    return React.createElement('div', { className: className }, React.createElement('div', { className: 'list-item-title' }, this.props.title), React.createElement('div', { className: 'list-item-end' }, btn));
+    return React.createElement(
+      'div',
+      { className: className },
+      React.createElement(
+        'div',
+        { className: 'list-item-title' },
+        this.props.title
+      ),
+      React.createElement(
+        'div',
+        { className: 'list-item-end' },
+        btn
+      )
+    );
   }
 });
 
