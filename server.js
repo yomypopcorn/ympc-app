@@ -15,6 +15,17 @@ server.connection({
 
 server.route({
   method: 'GET',
+  path: '/assets/{path*}',
+  handler: {
+    directory: {
+      path: path.join(__dirname, 'static/assets'),
+      listing: false
+    }
+  }
+});
+
+server.route({
+  method: 'GET',
   path: '/{path*}',
   handler: {
     file: path.join(__dirname, 'static/index.html')
