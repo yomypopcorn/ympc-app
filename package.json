@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-nodemon": "^2.0.3"
+    "gulp-nodemon": "^2.0.3",
+    "gulp-react": "^3.0.1",
+    "gulp-babel": "^5.1.0"
   }
 }
