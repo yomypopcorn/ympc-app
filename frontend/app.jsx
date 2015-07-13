@@ -194,7 +194,7 @@ var Search = React.createClass({
   render(){
     var results = this.props.shows.filter(function(show){
       var value = (this.state.searchValue || "").toLowerCase();
-      var showName = (show.name || "");
+      var showName = (show.title || "");
       return showName.toLowerCase().indexOf(value) !== -1;
     }.bind(this));
 
