@@ -189,6 +189,7 @@ var Search = React.createClass({
   componentDidMount(){
     var input = React.findDOMNode(this.refs.searchInput);
     $(input).focus();
+    if (window.scrollTo) window.scrollTo(0,0);
   },
 
   render(){
