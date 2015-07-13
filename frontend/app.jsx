@@ -1,5 +1,5 @@
 var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
-var apiBase = 'http://yomypopcorn.com/api';
+var apiBase = '/api';
 
 var YoMyPopcornApp = React.createClass({
   getInitialState(){
