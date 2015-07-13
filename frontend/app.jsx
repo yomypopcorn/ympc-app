@@ -203,14 +203,12 @@ var Search = React.createClass({
         isSubscribed={false}
         onBtnUnsubscribe={this.props.onRemoveSubscription}
         onBtnSubscribe={this.props.onAddSubscription}
-        key={show.imdb_id}
-      />
+        key={show.imdb_id}/>
     }.bind(this));
 
-    var cancel = null;
-    if(this.state.searchValue){
-      cancel = <div className="search-cancel" onClick={this.props.onCancel}>×</div>;
-    }
+
+    var cancel = <div className="search-cancel" onClick={this.props.onCancel}>×</div>;
+
 
     var emptyState = null;
     if(listItems.length === 0){
@@ -238,8 +236,7 @@ var Subscriptions = React.createClass({
         isSubscribed={true}
         onBtnUnsubscribe={this.props.onRemoveSubscription}
         onBtnSubscribe={this.props.onAddSubscription}
-        key={show.imdb_id}
-      />
+        key={show.imdb_id}/>
     }.bind(this));
 
     var emptyState = null;
