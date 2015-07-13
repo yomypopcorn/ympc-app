@@ -30,7 +30,7 @@ gulp.task('jsx', function() {
   return gulp.src('frontend/*.jsx')
     .pipe(jsx())
     .pipe(babel())
-    .pipe(gulp.dest('static/js'));
+    .pipe(gulp.dest('static/assets'));
 });
 
 gulp.task('dev', [ 'nodemon' ]);
