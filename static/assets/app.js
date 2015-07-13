@@ -244,6 +244,7 @@ var Search = React.createClass({
   componentDidMount: function componentDidMount() {
     var input = React.findDOMNode(this.refs.searchInput);
     $(input).focus();
+    if (window.scrollTo) window.scrollTo(0, 0);
   },
 
   render: function render() {
@@ -258,18 +259,14 @@ var Search = React.createClass({
         isSubscribed: false,
         onBtnUnsubscribe: this.props.onRemoveSubscription,
         onBtnSubscribe: this.props.onAddSubscription,
-        key: show.imdb_id
-      }));
+        key: show.imdb_id }));
     }).bind(this));
 
-    var cancel = null;
-    if (this.state.searchValue) {
-      cancel = React.createElement(
-        'div',
-        { className: 'search-cancel', onClick: this.props.onCancel },
-        '×'
-      );
-    }
+    var cancel = React.createElement(
+      'div',
+      { className: 'search-cancel', onClick: this.props.onCancel },
+      '×'
+    );
 
     var emptyState = null;
     if (listItems.length === 0) {
@@ -307,8 +304,7 @@ var Subscriptions = React.createClass({
         isSubscribed: true,
         onBtnUnsubscribe: this.props.onRemoveSubscription,
         onBtnSubscribe: this.props.onAddSubscription,
-        key: show.imdb_id
-      }));
+        key: show.imdb_id }));
     }).bind(this));
 
     var emptyState = null;
