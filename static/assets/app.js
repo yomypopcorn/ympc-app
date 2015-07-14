@@ -113,7 +113,7 @@ var FeedItem = React.createClass({
       backgroundImage: 'url(' + this.props.poster + ')'
     };
 
-    var timeAgo = moment(Date.parse(this.props.first_aired)).fromNow();
+    var timeAgo = moment(this.props.first_aired * 1000).fromNow();
 
     return React.createElement(
       'div',
