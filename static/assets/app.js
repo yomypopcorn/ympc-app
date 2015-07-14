@@ -2,7 +2,7 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'wisteria', 'alizarin', 'amethyst'];
+var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'alizarin'];
 var apiBase = '/api';
 
 var YoMyPopcornApp = React.createClass({
@@ -388,3 +388,5 @@ var ListItem = React.createClass({
 });
 
 React.render(React.createElement(YoMyPopcornApp, null), document.getElementById('app'));
+
+// Use amethyst and wisteria only for ui and background
