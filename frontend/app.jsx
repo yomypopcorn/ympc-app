@@ -136,6 +136,7 @@ var Shows = React.createClass({
       success: function(){},
       dataType: 'json'
     });
+    this.setSearchInactive()
   },
 
   removeSubscription(show){
