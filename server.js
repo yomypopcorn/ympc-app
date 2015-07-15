@@ -3,7 +3,6 @@ var hapi = require('hapi');
 var handlebars = require('handlebars');
 var bole = require('bole');
 var log = bole('server');
-var usertoken = require('./usertoken');
 var config = require('./config');
 
 var server = new hapi.Server();
@@ -27,34 +26,37 @@ server.connection({
   routes: { cors: config.enableCors }
 });
 
-server.route({
-  method: 'GET',
-  path: '/assets/{path*}',
-  handler: {
-    directory: {
-      path: path.join(__dirname, 'static/assets'),
-      listing: false
-    }
-  }
-});
-
-server.route({
-  method: 'GET',
-  path: '/{path*}',
-  handler: function (request, reply) {
-    var username = request.query.username;
-    var secret = config.yoApiKey;
-    var token = usertoken.generate(username, secret);
-
-    reply.view('index', {
-      token: token
-    });
-  }
-});
-
 var plugins = require('./plugins');
+
 server.register(plugins, function (err) {
   if (err) { throw err; }
+
+  server.route({
+    method: 'GET',
+    path: '/assets/{path*}',
+    handler: {
+      directory: {
+        path: path.join(__dirname, 'static/assets'),
+        listing: false
+      }
+    }
+  });
+
+  server.auth.strategy('yotoken', 'yotoken', {});
+
+  server.route({
+    method: 'GET',
+    path: '/{path*}',
+    handler: function (request, reply) {
+      var getUserToken = request.server.methods.getUserToken;
+      var username = request.query.username;
+      var token = getUserToken(username);
+
+      reply.view('index', {
+        token: token
+      });
+    }
+  });
 
   server.start(function () {
     console.log('Server running at:', server.info.uri);

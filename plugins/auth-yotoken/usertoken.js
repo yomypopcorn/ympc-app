@@ -16,5 +16,6 @@ function generate(username, secret) {
 
 
 function validate(username, secret, token) {
-  return generate(username, secret) == token;
+  console.log(arguments);
+  return generate(username, secret) === token;
 }

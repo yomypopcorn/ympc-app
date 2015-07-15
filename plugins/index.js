@@ -13,6 +13,10 @@ module.exports = [
     }
   },
   {
+    register: require('./auth-yotoken'),
+    options: { secret: config.yoApiKey }
+  },
+  {
     register: require('./db'),
     options: config
   },
