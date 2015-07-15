@@ -42,12 +42,13 @@ Example
 ```json
 [
   {
-    "imdb_id":   "episode id",
-    "title":    "title",
-    "season":   3,
-    "episode":  2,
-    "poster":   "image url",
-    "first_aired":  "releasedate"
+    "imdb_id":        "episode id",
+    "title":          "show title",
+    "episode_title":  "episode title",
+    "season":         3,
+    "episode":        2,
+    "poster":         "image url",
+    "first_aired":    "releasedate"
   }
 ]
 ```
