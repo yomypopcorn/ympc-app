@@ -91,9 +91,11 @@ exports.register = function (server, options, next) {
         validate: {
           query: {
             username: Joi.string().required(),
-            user_ip: Joi.string().optional()
+            user_ip: Joi.string().optional(),
+            secret: Joi.string().required()
           }
-        }
+        },
+        auth: 'yo'
       }
     },
 
