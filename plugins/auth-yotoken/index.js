@@ -12,7 +12,7 @@ exports.register = function (plugin, options, next) {
 
       authenticate: function (request, reply) {
         var token = request.query.token;
-        var username = request.params.username;
+        var username = request.params.username || request.query.username;
 
         console.log('auth', token, username);
 

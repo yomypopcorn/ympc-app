@@ -1,5 +1,6 @@
 var path = require('path');
 var hapi = require('hapi');
+var Joi = require('joi');
 var handlebars = require('handlebars');
 var bole = require('bole');
 var log = bole('server');
@@ -53,6 +54,16 @@ server.register(plugins, function (err) {
       reply.view('index', {
         token: token
       });
+    },
+    config: {
+      validate: {
+        query: {
+          username: Joi.string().required(),
+          user_ip: Joi.string().optional(),
+          token: Joi.string().required()
+        }
+      },
+      auth: 'yotoken'
     }
   });
 
