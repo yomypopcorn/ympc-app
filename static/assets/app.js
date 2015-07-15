@@ -297,8 +297,17 @@ var Subscriptions = React.createClass({
 
   render: function render() {
     var listItems = this.props.shows.map((function (show) {
-      var className = colorNames.shift();
-      colorNames.push(className);
+      var className;
+      var storageKey = 'color:' + show.imdb_id;
+      var storedColor = localStorage.getItem(storageKey);
+
+      if (storedColor) {
+        className = storedColor;
+      } else {
+        className = colorNames.shift();
+        colorNames.push(className);
+        localStorage.setItem(storageKey, className);
+      }
 
       return React.createElement(ListItem, _extends({}, show, {
         className: className,

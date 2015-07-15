@@ -240,8 +240,18 @@ var Search = React.createClass({
 var Subscriptions = React.createClass({
   render(){
     var listItems = this.props.shows.map(function(show){
-      var className = colorNames.shift();
-      colorNames.push(className);
+      var className;
+      var storageKey = 'color:' + show.imdb_id;
+      var storedColor = localStorage.getItem(storageKey)
+
+      if (storedColor) {
+        className = storedColor
+      } else {
+        className = colorNames.shift();
+        colorNames.push(className);
+        localStorage.setItem(storageKey, className)
+      }
+
 
       return <ListItem {...show}
         className={className}
