@@ -42,8 +42,6 @@ server.register(plugins, function (err) {
     }
   });
 
-  server.auth.strategy('yotoken', 'yotoken', {});
-
   server.route({
     method: 'GET',
     path: '/{path*}',

@@ -3,7 +3,9 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var colorNames = ['turquoise', 'emerald', 'peter', 'asphalt', 'green', 'sunflower', 'belize', 'alizarin'];
+
 var apiBase = '/api';
+var apiToken = document.querySelector('html').getAttribute('x-token');
 
 var YoMyPopcornApp = React.createClass({
   displayName: 'YoMyPopcornApp',
@@ -78,7 +80,7 @@ var Feed = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    $.get(apiBase + '/users/' + this.props.userName + '/feed').then((function (data) {
+    $.get(apiBase + '/users/' + this.props.userName + '/feed?token=' + apiToken).then((function (data) {
       this.setState({ feed: data });
     }).bind(this));
   },
@@ -165,7 +167,7 @@ var Shows = React.createClass({
       this.setState({ shows: data });
     }).bind(this));
 
-    $.getJSON(apiBase + '/users/' + this.state.userName + '/shows?compact=1').then((function (data) {
+    $.getJSON(apiBase + '/users/' + this.state.userName + '/shows?token=' + apiToken + '&compact=1').then((function (data) {
       this.setState({ subscribedShows: data });
     }).bind(this));
   },
@@ -180,7 +182,7 @@ var Shows = React.createClass({
 
   addSubscription: function addSubscription(show) {
     var shows = this.state.subscribedShows.push(show);
-    var url = [apiBase, '/users/', this.state.userName, '/shows'].join('');
+    var url = [apiBase, '/users/', this.state.userName, '/shows?token=', apiToken].join('');
 
     $.ajax({
       type: 'POST',
@@ -200,7 +202,7 @@ var Shows = React.createClass({
     // optimistic remove
     this.setState({ subscribedShows: newSubscriptions });
 
-    var url = [apiBase, '/users/', this.state.userName, '/shows/', show.imdb_id].join('');
+    var url = [apiBase, '/users/', this.state.userName, '/shows/', show.imdb_id, '?token=', apiToken].join('');
 
     $.ajax({
       type: 'DELETE',

@@ -39,6 +39,7 @@ exports.register = function (plugin, options, next) {
   };
 
   plugin.auth.scheme('yotoken', auth);
+  plugin.auth.strategy('yotoken', 'yotoken', {});
 
   next();
 };

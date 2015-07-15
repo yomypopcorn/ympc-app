@@ -13,19 +13,43 @@ exports.register = function (server, options, next) {
     {
       method: 'GET',
       path: '/api/shows',
-      handler: require('./get-shows')
+      handler: require('./get-shows'),
+      config: {
+        validate: {
+          query: {
+            compact: Joi.number().integer().optional()
+          }
+        }
+      }
     },
 
     {
       method: 'GET',
       path: '/api/users/{username}/feed',
-      handler: require('./user-get-feed')
+      handler: require('./user-get-feed'),
+      config: {
+        validate: {
+          query: {
+            token: Joi.string().required()
+          }
+        },
+        auth: 'yotoken'
+      }
     },
 
     {
       method: 'GET',
       path: '/api/users/{username}/shows',
-      handler: require('./user-get-shows')
+      handler: require('./user-get-shows'),
+      config: {
+        validate: {
+          query: {
+            token: Joi.string().required(),
+            compact: Joi.number().integer().optional()
+          }
+        },
+        auth: 'yotoken'
+      }
     },
 
     {
@@ -34,17 +58,29 @@ exports.register = function (server, options, next) {
       handler: require('./user-subscribe-show'),
       config: {
         validate: {
+          query: {
+            token: Joi.string().required(),
+          },
           payload: {
             imdb_id: Joi.string().required()
           }
-        }
+        },
+        auth: 'yotoken'
       }
     },
 
     {
       method: 'DELETE',
       path: '/api/users/{username}/shows/{imdb_id}',
-      handler: require('./user-unsubscribe-show')
+      handler: require('./user-unsubscribe-show'),
+      config: {
+        validate: {
+          query: {
+            token: Joi.string().required()
+          }
+        },
+        auth: 'yotoken'
+      }
     },
 
     {
