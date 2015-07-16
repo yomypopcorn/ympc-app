@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'production';
-
 var gulp = require('gulp');
 var bistre = require('bistre');
 var nodemon = require('gulp-nodemon');
@@ -12,7 +10,7 @@ var babelify = require('babelify');
 var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 
-var isProduction = process.env.NODE_ENV === 'production';
+var isProduction = process.env.NODE_ENV !== 'development';
 
 var vendors = [
   'react'
