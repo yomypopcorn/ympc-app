@@ -1,3 +1,5 @@
+import React from 'react';
+
 var colorNames = [
   'turquoise',
   'emerald',
