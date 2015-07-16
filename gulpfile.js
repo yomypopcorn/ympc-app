@@ -13,7 +13,8 @@ var gulpif = require('gulp-if');
 var isProduction = process.env.NODE_ENV !== 'development';
 
 var vendors = [
-  'react'
+  'react',
+  'moment'
 ];
 
 function handleError (err) {
