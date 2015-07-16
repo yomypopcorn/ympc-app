@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react/addons';
+import moment from 'moment';
 
 var colorNames = [
   'turquoise',
