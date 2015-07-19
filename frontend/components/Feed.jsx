@@ -42,7 +42,8 @@ var Feed = React.createClass({
         season={item.get('season')}
         episode={item.get('episode')}
         poster={item.get('poster')}
-        first_aired={item.get('first_aired')} />;
+        first_aired={item.get('first_aired')}
+        timestamp={item.get('timestamp')} />;
     });
 
     var emptyState = null;

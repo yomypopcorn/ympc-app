@@ -7,7 +7,8 @@ var defaults = {
     season: 0,
     episode: 0,
     poster: 'http://i.imgur.com/MNe2X.gif',
-    first_aired: null
+    first_aired: null,
+    timestamp: null
 };
 
 class FeedItemRecord extends Record(defaults) {

@@ -9,7 +9,8 @@ var FeedItem = React.createClass({
       backgroundImage: ('url(' + this.props.poster + ')')
     };
 
-    var timeAgo = moment(this.props.first_aired * 1000).fromNow();
+    var ts = +this.props.timestamp || +this.props.first_aired;
+    var timeAgo = moment(ts).fromNow();
 
     return (
       <div className="feed-item">
