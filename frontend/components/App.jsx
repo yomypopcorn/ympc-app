@@ -6,6 +6,7 @@ import {Link, RouteHandler} from 'react-router';
 import LoginStore from '../stores/LoginStore';
 import LoginActions from '../actions/LoginActions';
 import ShowsActions from '../actions/ShowsActions';
+import FeedActions from '../actions/FeedActions';
 
 var App = React.createClass({
 
@@ -18,6 +19,7 @@ var App = React.createClass({
 
   componentDidMount () {
     ShowsActions.fetchShows();
+    FeedActions.fetchFeed();
   },
 
   render () {
