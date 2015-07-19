@@ -28,6 +28,7 @@ class FeedStore {
   }
 
   handleFetchFeed () {
+    if (this.feed.size) { return; }
     this.feed = Immutable.Set();
   }
 

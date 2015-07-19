@@ -1,5 +1,6 @@
 'use strict';
 
+import Immutable from 'immutable';
 import React from 'react/addons';
 import {Link} from 'react-router';
 import FeedStore from '../stores/FeedStore';
@@ -10,6 +11,10 @@ var Feed = React.createClass({
 
   getInitialState () {
     return FeedStore.getState();
+  },
+
+  shouldComponentUpdate (nextProps, nextState) {
+    return !Immutable.is(nextState.feed, this.state.feed);
   },
 
   componentDidMount () {
