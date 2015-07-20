@@ -50,7 +50,7 @@ var ShowsSubscriptions = React.createClass({
 
     var addText = showsList.size ? '+ Add more shows' : '+ Add your first show';
 
-    var addLink = <Link to="showssearch" query={this.props.query} className="list-btn list-item">{addText}</Link>;
+    var addLink = <Link to="/shows/search" query={this.props.location.query} className="list-btn list-item">{addText}</Link>;
 
     var topAddLink = showsList.size >= 10 ? addLink : '';
 
