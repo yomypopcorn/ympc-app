@@ -52,18 +52,22 @@ var ShowsSubscriptions = React.createClass({
 
     var addLink = <Link to="showssearch" query={this.props.query} className="list-btn list-item">{addText}</Link>;
 
-    var content = showsList.size < 10 ? 
-      <div>{showsList} {addLink}</div>
-      : <div>{addLink} {showsList}</div>;
+    var topAddLink = showsList.size >= 10 ? addLink : '';
 
     return (
       <div>
         {emptyState}
-        {content}
-        {/*<ReactCSSTransitionGroup transitionName="list-item-remove">
+        <ReactCSSTransitionGroup
+          component="div"
+          transitionName="add-link">
+          {topAddLink}
+        </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          component="div"
+          transitionName="list-item-remove">
           {showsList}
-        </ReactCSSTransitionGroup> */}
-        
+        </ReactCSSTransitionGroup>
+        {addLink}
       </div>
     );
   }

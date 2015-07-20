@@ -68,10 +68,21 @@ body, html {
 .list-item-remove-leave {
   transform: scale(1);
   opacity: 1;
-  transition: transform .2s, opacity 0.2s;
+  transition: transform .2s, opacity .2s;
 }
 
 .list-item-remove-leave.list-item-remove-leave-active {
+  transform: scale(0.5);
+  opacity: 0.01;
+}
+
+.add-link-leave {
+  transform: scale(1);
+  opacity: 1;
+  transition: transform .2s, opacity .2s;
+}
+
+.add-link-leave.add-link-leave-active {
   transform: scale(0.5);
   opacity: 0.01;
 }
