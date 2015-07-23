@@ -38,7 +38,7 @@ var Shows = React.createClass({
   },
 
   goToSubscriptions () {
-    this.transitionTo('subscriptions', {}, this.props.query);
+    this.transitionTo('/shows', this.props.location.query);
   },
 
   render () {

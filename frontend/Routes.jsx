@@ -1,7 +1,9 @@
 'use strict';
 
 import React from 'react/addons';
-import {Route, NotFoundRoute, DefaultRoute} from 'react-router';
+import {NotFoundRoute, DefaultRoute} from 'react-router';
+import { Router, Route } from 'react-router';
+import { history } from 'react-router/lib/BrowserHistory';
 
 import App from './components/App';
 import Feed from './components/Feed';
@@ -10,14 +12,14 @@ import ShowsSearch from './components/ShowsSearch';
 import NotFound from './components/NotFound';
 
 export default (
-  <Route handler={App} path='/'>
+  <Router history={history}>
+    <Route component={App} path='/'>
 
-    <Route name='feed' path='/feed' handler={Feed} />
-    <Route name='subscriptions' path='/shows'>
-      <DefaultRoute handler={ShowsSubscriptions} />
-      <Route name='showssearch' path='/shows/search' handler={ShowsSearch} />
+      <Route path='feed' component={Feed} />
+      <Route path='shows' component={ShowsSubscriptions} />
+      <Route path='shows/search' component={ShowsSearch} />
+      <Route name='notfound' path='*' component={NotFound} />
+
     </Route>
-    <NotFoundRoute handler={NotFound} />
-
-  </Route>
+  </Router>
 );
