@@ -133,22 +133,23 @@ input[type="search"] {
 
 input[type="search"]:focus {
   outline: 0;
-  box-shadow: inset 0px 2px 11px -3px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0px 2px 8px -3px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1 !important;
 }
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   opacity: 1;
 }
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   opacity: 1;
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .feed-item {
