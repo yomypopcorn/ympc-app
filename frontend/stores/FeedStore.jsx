@@ -24,7 +24,9 @@ class FeedStore {
         return new FeedItemRecord(value);
       }
       return value.toSet();
-    });
+    })
+      .sortBy(item => item.get('timestamp'))
+      .reverse();
   }
 
   handleFetchFeed () {
