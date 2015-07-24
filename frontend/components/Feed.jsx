@@ -49,7 +49,7 @@ var Feed = React.createClass({
 
     var emptyState = null;
     if (!feedItemList.size) {
-      emptyState = <div className="empty-state">Nothing here yet.<br/><Link to="showssearch" query={this.props.query}>Subscribe to some shows</Link></div>;
+      emptyState = <div className="empty-state">Nothing here yet.<br/><Link to="/shows/search" query={this.props.location.query}>Subscribe to some shows</Link></div>;
     }
 
     return (
