@@ -13,7 +13,7 @@ module.exports = function (request, reply) {
       return reply(boom.badImplementation());
     }
 
-    reply({ status: 'ok' });
+    reply({ status: 'ok' }).code(201);
   });
 
 };
