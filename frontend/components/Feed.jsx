@@ -42,7 +42,7 @@ var Feed = React.createClass({
         episode_title={item.get('episode_title')}
         season={item.get('season')}
         episode={item.get('episode')}
-        poster={item.get('poster')}
+        image={item.getPosterThumb()}
         first_aired={item.get('first_aired')}
         timestamp={item.get('timestamp')} />;
     });

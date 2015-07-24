@@ -6,7 +6,7 @@ import moment from 'moment';
 var FeedItem = React.createClass({
   render () {
     var localStyle = {
-      backgroundImage: ('url(' + this.props.poster + ')')
+      backgroundImage: ('url(' + this.props.image + ')')
     };
 
     var ts = +this.props.timestamp || +this.props.first_aired;

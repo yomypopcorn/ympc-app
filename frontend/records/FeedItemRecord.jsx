@@ -14,6 +14,23 @@ var defaults = {
 };
 
 class FeedItemRecord extends Record(defaults) {
+
+  getPosterThumb () {
+    if (this.poster.indexOf('original') === -1) {
+      return this.poster;
+    }
+
+    return this.poster.replace('original', 'thumb')
+  }
+
+  getPosterMedium () {
+    if (this.poster.indexOf('original') === -1) {
+      return this.poster;
+    }
+
+    return this.poster.replace('original', 'medium')
+  }
+
 };
 
 export default FeedItemRecord;
