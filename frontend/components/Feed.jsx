@@ -35,7 +35,8 @@ var Feed = React.createClass({
 
     var feedItemList = feed.map((item) => {
       return <FeedItem
-        key={item.get('imdb_id')}
+        key={item.get('imdb_id') + '-' + item.get('sien')}
+        show_id={item.get('show_id')}
         imdb_id={item.get('imdb_id')}
         title={item.get('title')}
         episode_title={item.get('episode_title')}
