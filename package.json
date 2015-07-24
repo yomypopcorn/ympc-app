@@ -24,6 +24,7 @@
     "moment": "^2.10.3",
     "rc": "^1.0.3",
     "react": "^0.13.0",
+    "react-lazy-load": "git+https://github.com/maxkueng/react-lazy-load.git#npm-files",
     "react-router": "1.0.0-beta3",
     "request": "^2.58.0",
     "yomypopcorn-dbclient": "git+https://github.com/yomypopcorn/yomypopcorn-dbclient.git#master"

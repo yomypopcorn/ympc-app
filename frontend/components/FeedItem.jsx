@@ -2,6 +2,7 @@
 
 import React from 'react/addons';
 import moment from 'moment';
+import LazyLoad from 'react-lazy-load';
 
 var FeedItem = React.createClass({
   propTypes: {
@@ -25,6 +26,7 @@ var FeedItem = React.createClass({
     var timeAgo = moment(ts).fromNow();
 
     return (
+      <LazyLoad height="400px">
       <div className="feed-item">
         <div className="feed-item-header emerald">{timeAgo}</div>
         <div className="feed-item-body" style={localStyle}>
@@ -33,7 +35,9 @@ var FeedItem = React.createClass({
           </div>
         </div>
         <div className="feed-item-footer emerald">Season {this.props.season}, Episode {this.props.episode}</div>
-      </div>);
+      </div>
+      </LazyLoad>
+    );
   }
 
 });
