@@ -19,11 +19,13 @@ Responds with 200
 ```json
 [
   {
+    "id": "tt2575988",
     "imdb_id": "tt2575988",
     "title":   "Silicon Valley",
     "rating":  7.3
   },
   {
+    "id": "tt7392128",
     "imdb_id": "tt7392128",
     "title":   "Example",
     "rating":  1.2
@@ -42,7 +44,8 @@ Example
 ```json
 [
   {
-    "imdb_id":        "episode id",
+    "show_id":        "show id",
+    "imdb_id":        "show IMDB id",
     "title":          "show title",
     "episode_title":  "episode title",
     "season":         3,
@@ -64,11 +67,13 @@ Example
 ```json
 [
   {
+    "id": "tt2575988",
     "imdb_id": "tt2575988",
     "title":   "Silicon Valley",
     "rating":  7.3
   },
   {
+    "id": "tt7392128",
     "imdb_id": "tt7392128",
     "title":   "Example",
     "rating":  1.2
@@ -83,7 +88,7 @@ Subscribe to a new show
 
 Request body:
 ```json
-{ "imdb_id": "tt2575988" }
+{ "show_id": "tt2575988" }
 ```
 
 

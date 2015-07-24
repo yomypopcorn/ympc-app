@@ -46,8 +46,9 @@ var Shows = React.createClass({
 
     var showsList = shows.map((show) => {
       return <ShowsListItem
-        key={show.get('imdb_id')}
-        imdb_id={show.get('imdb_id')}
+        key={show.get('id')}
+        id={show.get('id')}
+        imdbId={show.get('imdb_id')}
         title={show.get('title')}
         rating={show.get('rating')}
         isSubscribed={show.get('isSubscribed')}

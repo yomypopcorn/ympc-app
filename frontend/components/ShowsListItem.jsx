@@ -5,11 +5,21 @@ import ShowsActions from '../actions/ShowsActions';
 
 var ShowsListItem = React.createClass({
 
+  propTypes: {
+    id: React.PropTypes.string.isRequired,
+    imdbId: React.PropTypes.string,
+    title: React.PropTypes.string.isRequired,
+    color: React.PropTypes.string,
+    rating: React.PropTypes.number,
+    isSubscribed: React.PropTypes.bool,
+    onSubscriptionChanged: React.PropTypes.func
+  },
+
   handleButtonClick () {
     if (!this.props.isSubscribed) {
-      ShowsActions.subscribeShow(this.props.imdb_id);
+      ShowsActions.subscribeShow(this.props.id);
     } else {
-      ShowsActions.unsubscribeShow(this.props.imdb_id);
+      ShowsActions.unsubscribeShow(this.props.id);
     }
 
     if (this.props.onSubscriptionChanged) {

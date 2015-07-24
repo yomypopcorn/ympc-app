@@ -39,12 +39,12 @@ class ShowsStore {
 
   handleUpdateShows (shows) {
     shows = shows.reduce((shows, show) => {
-      shows[show.imdb_id] = show;
+      shows[show.id] = show;
       return shows;
     }, {});
 
     this.shows = Immutable.fromJS(shows, (key, value) => {
-      if (value.get('imdb_id')) {
+      if (value.get('id')) {
         return new ShowRecord(value);
       }
       return value.toMap();

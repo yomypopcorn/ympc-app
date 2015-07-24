@@ -4,12 +4,24 @@ import React from 'react/addons';
 import moment from 'moment';
 
 var FeedItem = React.createClass({
+  propTypes: {
+    showId: React.PropTypes.string.isRequired,
+    imdbId: React.PropTypes.string,
+    title: React.PropTypes.string.isRequired,
+    episodeTitle: React.PropTypes.string,
+    season: React.PropTypes.number.isRequired,
+    episode: React.PropTypes.number.isRequired,
+    image: React.PropTypes.string.isRequired,
+    firstAired: React.PropTypes.number,
+    timestamp: React.PropTypes.number.isRequired
+  },
+
   render () {
     var localStyle = {
       backgroundImage: ('url(' + this.props.image + ')')
     };
 
-    var ts = +this.props.timestamp || +this.props.first_aired;
+    var ts = +this.props.timestamp || +this.props.firstAired;
     var timeAgo = moment(ts).fromNow();
 
     return (

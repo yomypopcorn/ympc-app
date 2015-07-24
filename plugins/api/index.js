@@ -62,7 +62,7 @@ exports.register = function (server, options, next) {
             token: Joi.string().required(),
           },
           payload: {
-            imdb_id: Joi.string().required()
+            show_id: Joi.string().required()
           }
         },
         auth: 'yotoken'
@@ -71,7 +71,7 @@ exports.register = function (server, options, next) {
 
     {
       method: 'DELETE',
-      path: '/api/users/{username}/shows/{imdb_id}',
+      path: '/api/users/{username}/shows/{show_id}',
       handler: require('./user-unsubscribe-show'),
       config: {
         validate: {

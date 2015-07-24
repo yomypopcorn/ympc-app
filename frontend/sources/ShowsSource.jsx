@@ -25,12 +25,12 @@ var ShowsSource = {
       axios.all([ getAllShows(), getSubscribedShows() ])
         .then(axios.spread((shows, subscriptions) => {
           subscriptions = subscriptions.reduce((subscriptions, show) => {
-            subscriptions[show.imdb_id] = true;
+            subscriptions[show.id] = true;
             return subscriptions;
           }, {});
 
           shows = shows.map((show) => {
-            show.isSubscribed = (subscriptions[show.imdb_id] === true);
+            show.isSubscribed = (subscriptions[show.id] === true);
             return show;
           });
 
@@ -46,7 +46,7 @@ var ShowsSource = {
   subscribeShow (showId) {
     var credentials = LoginStore.getState();
     return axios.post(apiBase + '/users/' + credentials.username + '/shows?token=' + credentials.token, {
-      imdb_id: showId
+      show_id: showId
     })
       .then(response => response.data);
   },

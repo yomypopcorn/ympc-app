@@ -35,15 +35,15 @@ var Feed = React.createClass({
 
     var feedItemList = feed.map((item) => {
       return <FeedItem
-        key={item.get('imdb_id') + '-' + item.get('sien')}
-        show_id={item.get('show_id')}
-        imdb_id={item.get('imdb_id')}
+        key={item.get('show_id') + '-' + item.get('sien')}
+        showId={item.get('show_id')}
+        imdbId={item.get('imdb_id')}
         title={item.get('title')}
-        episode_title={item.get('episode_title')}
+        episodeTitle={item.get('episode_title')}
         season={item.get('season')}
         episode={item.get('episode')}
         image={item.getPosterThumb()}
-        first_aired={item.get('first_aired')}
+        firstAired={item.get('first_aired')}
         timestamp={item.get('timestamp')} />;
     });
 

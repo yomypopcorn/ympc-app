@@ -26,6 +26,7 @@ function getColor (showId) {
 }
 
 var defaults = {
+  id: null,
   imdb_id: null,
   title: '',
   isSubscribed: false,

@@ -3,7 +3,7 @@ var log = require('bole')('api');
 
 module.exports = function (request, reply) {
 
-  var showId = request.payload.imdb_id;
+  var showId = request.payload.show_id;
   var username = request.params.username;
   var subscribeShow = request.server.methods.db.subscribeShow;
 

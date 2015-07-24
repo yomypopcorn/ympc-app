@@ -22,6 +22,7 @@ exports.register = function (server, options, next) {
           if (err) { return callback(err);}
 
           callback(err, {
+            id: show.id,
             imdb_id: show.imdb_id,
             title: show.title,
             rating: show.rating
@@ -46,6 +47,7 @@ exports.register = function (server, options, next) {
           if (err) { return callback(err);}
 
           callback(err, {
+            id: show.id,
             imdb_id: show.imdb_id,
             title: show.title,
             rating: show.rating

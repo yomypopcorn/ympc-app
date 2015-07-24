@@ -20,7 +20,7 @@ class FeedStore {
 
   handleUpdateFeed (feed) {
     this.feed = Immutable.fromJS(feed, (key, value) => {
-      if (value.get('imdb_id')) {
+      if (value.get('show_id')) {
         return new FeedItemRecord(value);
       }
       return value.toSet();
