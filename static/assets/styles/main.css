@@ -119,13 +119,21 @@ body, html {
 }
 
 input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.5em 1em;
+  padding: 15px 1em;
   border: 0px solid transparent;
+  border-top: 1px solid #AD6AC9;
   background: #7E4097;
   font-size: 24px;
   text-align: center;
+}
+
+input[type="search"]:focus {
+  outline: 0;
+  box-shadow: inset 0px 2px 11px -3px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -222,7 +230,7 @@ input[type="search"] {
   cursor: pointer;
   position: absolute;
   right: 1em;
-  top: 30px;
+  top: 9px;
   font-size: 36px;
 }
 
