@@ -15,7 +15,7 @@ var isProduction = process.env.NODE_ENV !== 'development';
 var vendors = [
   'react',
   'react/addons',
-  'react-lazy-load',
+  'react-lazyrender-mixin',
   'moment',
   'axios',
   'immutable',

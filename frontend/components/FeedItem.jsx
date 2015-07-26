@@ -2,9 +2,17 @@
 
 import React from 'react/addons';
 import moment from 'moment';
-import LazyLoad from 'react-lazy-load';
+import LazyRenderMixin from 'react-lazyrender-mixin';
 
 var FeedItem = React.createClass({
+  mixins: [ LazyRenderMixin ],
+
+  getDefaultProps () {
+    return {
+      placeholderClassName: 'feed-item-placeholder'
+    };
+  },
+
   propTypes: {
     showId: React.PropTypes.string.isRequired,
     imdbId: React.PropTypes.string,
@@ -26,7 +34,6 @@ var FeedItem = React.createClass({
     var timeAgo = moment(ts).fromNow();
 
     return (
-      <LazyLoad height="400px">
       <div className="feed-item">
         <div className="feed-item-header emerald">{timeAgo}</div>
         <div className="feed-item-body" style={localStyle}>
@@ -36,7 +43,6 @@ var FeedItem = React.createClass({
         </div>
         <div className="feed-item-footer emerald">Season {this.props.season}, Episode {this.props.episode}</div>
       </div>
-      </LazyLoad>
     );
   }
 

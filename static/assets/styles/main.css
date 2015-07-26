@@ -156,6 +156,10 @@ input[type="search"]:focus {
   margin: 2em;
 }
 
+.feed-item-placeholder {
+  height: 400px;
+}
+
 .feed-item-header,
 .feed-item-footer {
   height: 60px;
