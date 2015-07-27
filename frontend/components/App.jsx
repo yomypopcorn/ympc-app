@@ -13,9 +13,10 @@ var App = React.createClass({
   mixins: [ State ],
 
   componentWillMount () {
+    var token = document.documentElement.getAttribute('x-token');
     LoginActions.updateCredentials({
       username: this.props.location.query.username,
-      token: this.props.location.query.token
+      token: token
     });
   },
 
