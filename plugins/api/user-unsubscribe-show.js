@@ -7,13 +7,13 @@ module.exports = function (request, reply) {
   var username = request.params.username;
   var unsubscribeShow = request.server.methods.db.unsubscribeShow;
 
-  unsubscribeShow(username, showId, function (err) {
-    if (err) {
+  unsubscribeShow(username, showId)
+    .then(function () {
+      reply({ status: 'ok' }).code(201);
+    })
+    .catch(function (err) {
       log.error(err);
-      return reply(boom.badImplementation());
-    }
-
-    reply({ status: 'ok' });
-  });
+      reply(boom.badImplementation());
+    });
 
 };

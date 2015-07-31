@@ -5,13 +5,13 @@ module.exports = function (request, reply) {
 
   var getShows = request.server.methods.db.getShows;
 
-  getShows(true, function (err, shows) {
-    if (err) {
+  getShows(true)
+    .then(function (shows) {
+      reply(shows);
+    })
+    .catch(function (err) {
       log.error(err);
-      return reply(boom.badImplementation());
-    }
-
-    reply(shows);
-  });
+      reply(boom.badImplementation());
+    });
 
 };

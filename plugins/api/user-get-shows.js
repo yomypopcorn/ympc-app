@@ -6,13 +6,13 @@ module.exports = function (request, reply) {
   var username = request.params.username;
   var getUserShows = request.server.methods.db.getUserShows;
 
-  getUserShows(username, true, function (err, shows) {
-    if (err) {
+  getUserShows(username, true)
+    .then(function (shows) {
+      reply(shows);
+    })
+    .catch(function (err) {
       log.error(err);
-      return reply(boom.badImplementation());
-    }
-
-    reply(shows);
-  });
+      reply(boom.badImplementation());
+    });
 
 };

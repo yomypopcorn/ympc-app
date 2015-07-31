@@ -1,11 +1,18 @@
 var boom = require('boom');
-var usertoken = require('./usertoken');
+var utils = require('ympc-utils');
 
 exports.register = function (plugin, options, next) {
 
-  plugin.method('getUserToken', function (username) {
-    return usertoken.generate(username, options.secret);
-  });
+  var getUserToken = function (username) {
+    return utils.generateUserToken(options.secret, username);
+  };
+
+  var validateUserToken = function (username, token) {
+    return utils.validateUserToken(options.secret, username, token);
+  };
+
+  plugin.method('getUserToken', getUserToken);
+  plugin.method('validateUserToken', validateUserToken);
 
   var auth = function (server) {
     var scheme = {
@@ -14,13 +21,11 @@ exports.register = function (plugin, options, next) {
         var token = request.query.token;
         var username = request.params.username || request.query.username;
 
-        console.log('auth', token, username);
-
         if (!token || !username) {
           return reply(boom.unauthorized('Missing credentials'));
         }
 
-        var isValid = usertoken.validate(username, options.secret, token);
+        var isValid = validateUserToken(username, token);
 
         if (!isValid) {
           return reply(boom.unauthorized('Invalid credentials'));

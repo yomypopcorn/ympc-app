@@ -9,9 +9,9 @@
   "author": "",
   "dependencies": {
     "alt": "^0.17.1",
-    "async": "^1.3.0",
     "axios": "^0.5.4",
     "bistre": "^1.0.1",
+    "bluebird": "^2.9.34",
     "bole": "^2.0.0",
     "boom": "^2.8.0",
     "good": "^6.2.0",
@@ -27,6 +27,8 @@
     "react-lazyrender-mixin": "^1.0.0",
     "react-router": "1.0.0-beta3",
     "request": "^2.58.0",
+    "ympc-utils": "git+https://github.com/yomypopcorn/yomypopcorn-utils.git#master",
+    "ympc-yo": "git+https://github.com/yomypopcorn/ympc-yo.git#master",
     "yomypopcorn-dbclient": "git+https://github.com/yomypopcorn/yomypopcorn-dbclient.git#master"
   },
   "devDependencies": {

@@ -9,14 +9,13 @@ module.exports = function (request, reply) {
 
   var feedsLink = 'http://app.yomypopcorn.com/feed?username=' + username + '&token=' + getUserToken(username);
 
-  sendLink(username, feedsLink, function (err) {
-    if (err) {
+  sendLink(username, feedsLink)
+    .then(function () {
+      reply({ status: 'ok' });
+    })
+    .catch(function (err) {
       log.error(err);
-
-      return reply(boom.badImplementation());
-    }
-
-    reply({ status: 'ok' });
-  });
+      reply(boom.badImplementation());
+    });
 
 };
