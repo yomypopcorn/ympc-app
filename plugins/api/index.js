@@ -96,6 +96,10 @@ exports.register = function (server, options, next) {
             display_name: Joi.string().optional(),
             link: Joi.string().optional(),
             location: Joi.string().optional()
+          },
+          options: {
+            allowUnknown: true,
+            stripUnknown: true
           }
         },
         auth: 'yo'
