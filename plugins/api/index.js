@@ -93,6 +93,7 @@ exports.register = function (server, options, next) {
             username: Joi.string().required(),
             secret: Joi.string().required(),
             user_ip: Joi.string().optional(),
+            display_name: Joi.string().optional(),
             link: Joi.string().optional(),
             location: Joi.string().optional()
           }
