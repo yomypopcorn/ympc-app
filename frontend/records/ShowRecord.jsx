@@ -12,13 +12,24 @@ var colorNames = [
 // Use amethyst and wisteria only for ui and background
 ];
 
+function getColorIndex () {
+  var idx = typeof localStorage.getItem('currentColorIndex') !== 'undefined' ?
+    +localStorage.getItem('currentColorIndex')
+    : 0;
+
+  localStorage.setItem('currentColorIndex', (idx + 1) % colorNames.length);
+
+  return idx;
+}
+
+var currentColorIndex = +localStorage.getItem('currentColorIndex') || 0;
+
 function getColor (showId) {
-  var colorKey = 'color:' + showId;
+  var colorKey = 'show:' + showId + ':color';
   var color = localStorage.getItem(colorKey);
 
   if (!color) {
-    color = colorNames.shift();
-    colorNames.push(color);
+    color = colorNames[getColorIndex()];
     localStorage.setItem(colorKey, color);
   }
 
