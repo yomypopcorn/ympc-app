@@ -1,5 +1,5 @@
 {
-  "name": "yomypopcorn-service",
+  "name": "ympc-app",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",
@@ -27,9 +27,9 @@
     "react-lazyrender-mixin": "^1.0.0",
     "react-router": "1.0.0-beta3",
     "request": "^2.58.0",
-    "ympc-utils": "git+https://github.com/yomypopcorn/yomypopcorn-utils.git#master",
+    "ympc-utils": "git+https://github.com/yomypopcorn/ympc-utils.git#master",
     "ympc-yo": "git+https://github.com/yomypopcorn/ympc-yo.git#master",
-    "yomypopcorn-dbclient": "git+https://github.com/yomypopcorn/yomypopcorn-dbclient.git#master"
+    "ympc-dbclient": "git+https://github.com/yomypopcorn/ympc-dbclient.git#master"
   },
   "devDependencies": {
     "babelify": "^6.1.3",

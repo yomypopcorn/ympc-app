@@ -1,8 +1,8 @@
-var ympdb = require('yomypopcorn-dbclient');
+var ympcdb = require('ympc-dbclient');
 
 exports.register = function (server, options, next) {
 
-  var db = ympdb({
+  var db = ympcdb({
     socket: options.redisSocket,
     host: options.redisHost,
     port: options.redisPort,

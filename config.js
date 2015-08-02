@@ -11,4 +11,4 @@ var defaults = {
 	redisPassword: null,
 };
 
-module.exports = require('rc')('yomypopcorn-service', defaults);
+module.exports = require('rc')('ympc-app', defaults);
