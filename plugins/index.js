@@ -14,19 +14,19 @@ module.exports = [
   },
   {
     register: require('./auth-yo'),
-    options: { secret: config.yoApiKey }
+    options: { secret: config.get('yo.apikey') }
   },
   {
     register: require('./auth-yotoken'),
-    options: { secret: config.yoApiKey }
+    options: { secret: config.get('yo.apikey') }
   },
   {
     register: require('./db'),
-    options: config
+    options: config.get('redis')
   },
   {
-    register: require('./yo'),
-    options: { apiKey: config.yoApiKey }
+    register: require('./yoqueue'),
+    options: config.get('redis')
   },
   {
     register: require('./api')
