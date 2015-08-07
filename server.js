@@ -6,7 +6,9 @@ var bole = require('bole');
 var log = bole('server');
 var config = require('./config');
 
-var server = new hapi.Server();
+var server = new hapi.Server({
+  app: config
+});
 
 server.views({
   engines: {
@@ -21,10 +23,10 @@ server.views({
 });
 
 server.connection({
-  address: config.address,
-  port: config.port,
-  uri: config.uri,
-  routes: { cors: config.enableCors }
+  address: server.settings.app.address,
+  port: server.settings.app.port,
+  uri: server.settings.app.uri,
+  routes: { cors: server.settings.app.enableCors }
 });
 
 var plugins = require('./plugins');
@@ -60,7 +62,9 @@ server.register(plugins, function (err) {
         query: {
           username: Joi.string().required(),
           user_ip: Joi.string().optional(),
-          token: Joi.string().required()
+          token: Joi.string().required(),
+          yoid: Joi.string().optional(),
+          yoref: Joi.string().optional()
         }
       },
       auth: 'yotoken'

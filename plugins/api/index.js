@@ -94,6 +94,7 @@ exports.register = function (server, options, next) {
             secret: Joi.string().required(),
             user_ip: Joi.string().optional(),
             display_name: Joi.string().optional(),
+            yoref: Joi.string().optional(),
             link: Joi.string().optional(),
             location: Joi.string().optional()
           },
@@ -114,5 +115,10 @@ exports.register = function (server, options, next) {
 };
 
 exports.register.attributes = {
-  'name': 'api'
+  name: 'api',
+  dependencies: [
+    'db',
+    'yoqueue',
+    'auth-yotoken'
+  ]
 };

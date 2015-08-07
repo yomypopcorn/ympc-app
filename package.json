@@ -14,6 +14,7 @@
     "bluebird": "^2.9.34",
     "bole": "^2.0.0",
     "boom": "^2.8.0",
+    "cuid": "^1.2.5",
     "good": "^6.2.0",
     "good-console": "^5.0.2",
     "handlebars": "^3.0.3",
@@ -21,15 +22,17 @@
     "hoek": "^2.14.0",
     "immutable": "^3.7.4",
     "joi": "^6.5.0",
+    "kue": "^0.9.4",
     "moment": "^2.10.3",
+    "object-assign": "^3.0.0",
     "rc": "^1.0.3",
     "react": "^0.13.0",
     "react-lazyrender-mixin": "^1.0.0",
     "react-router": "1.0.0-beta3",
     "request": "^2.58.0",
-    "ympc-utils": "git+https://github.com/yomypopcorn/ympc-utils.git#master",
-    "ympc-yo": "git+https://github.com/yomypopcorn/ympc-yo.git#master",
-    "ympc-dbclient": "git+https://github.com/yomypopcorn/ympc-dbclient.git#master"
+    "rucola": "^1.0.0",
+    "ympc-dbclient": "git+https://github.com/yomypopcorn/ympc-dbclient.git#master",
+    "ympc-utils": "git+https://github.com/yomypopcorn/ympc-utils.git#master"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
