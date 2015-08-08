@@ -5,9 +5,11 @@ var handlebars = require('handlebars');
 var bole = require('bole');
 var log = bole('server');
 var config = require('./config');
+var assign = require('object-assign');
+var pkg = require('./package.json');
 
 var server = new hapi.Server({
-  app: config
+  app: assign({}, config, { pkg: pkg })
 });
 
 server.views({

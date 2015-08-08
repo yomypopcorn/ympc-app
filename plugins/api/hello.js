@@ -1,3 +1,13 @@
+var assign = require('object-assign');
+
 module.exports = function (request, reply) {
-  reply({ hello: 'myfriend' });
+  var settings = request.server.settings;
+
+  console.log(settings);
+
+  reply({
+    name: settings.app.pkg.name,
+    version: settings.app.pkg.version,
+    uptime: process.uptime() * 1000
+  });
 };
