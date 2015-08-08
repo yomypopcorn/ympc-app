@@ -28,7 +28,6 @@
     "react": "^0.13.0",
     "react-lazyrender-mixin": "^1.0.0",
     "react-router": "1.0.0-beta3",
-    "request": "^2.58.0",
     "rucola": "^1.0.0",
     "ympc-dbclient": "git+https://github.com/yomypopcorn/ympc-dbclient.git#master",
     "ympc-utils": "git+https://github.com/yomypopcorn/ympc-utils.git#master"
