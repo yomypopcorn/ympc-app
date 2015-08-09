@@ -51,6 +51,10 @@ exports.register = function (server, options, next) {
     return db.getFeed(username);
   }
 
+  function removeItemFromFeed (username, showId, sien) {
+    return db.removeItemFromFeed(username, showId, sien);
+  }
+
   function createYoJob (data) {
     return db.createYoJob(data);
   }
@@ -60,6 +64,7 @@ exports.register = function (server, options, next) {
   server.method('db.subscribeShow', subscribeShow);
   server.method('db.unsubscribeShow', unsubscribeShow);
   server.method('db.getFeed', getFeed);
+  server.method('db.removeItemFromFeed', removeItemFromFeed);
   server.method('db.createYoJob', createYoJob);
 
   next();

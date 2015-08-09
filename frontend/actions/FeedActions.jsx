@@ -26,6 +26,15 @@ class FeedActions {
       });
   }
 
+  removeItem (showId, sien) {
+    this.dispatch({
+      showId: showId,
+      sien: sien
+    });
+
+    FeedSource.removeItem(showId, sien);
+  }
+
 }
 
 export default alt.createActions(FeedActions);

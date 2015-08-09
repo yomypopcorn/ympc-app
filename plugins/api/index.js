@@ -38,6 +38,22 @@ exports.register = function (server, options, next) {
     },
 
     {
+      method: 'DELETE',
+      path: '/api/users/{username}/feed',
+      handler: require('./user-remove-feed-item'),
+      config: {
+        validate: {
+          query: {
+            token: Joi.string().required(),
+            showId: Joi.string().required(),
+            sien: Joi.string().required()
+          }
+        },
+        auth: 'yotoken'
+      }
+    },
+
+    {
       method: 'GET',
       path: '/api/users/{username}/shows',
       handler: require('./user-get-shows'),

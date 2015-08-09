@@ -42,6 +42,7 @@ var Feed = React.createClass({
         episodeTitle={item.get('episode_title')}
         season={item.get('season')}
         episode={item.get('episode')}
+        sien={item.get('sien')}
         image={item.getPosterThumb()}
         firstAired={item.get('first_aired')}
         timestamp={item.get('timestamp')} />;

@@ -14,7 +14,8 @@ class FeedStore {
     this.bindListeners({
       handleUpdateFeed: FeedActions.UPDATE_FEED,
       handleFetchFeed: FeedActions.FETCH_FEED,
-      handleFeedFailed: FeedActions.FEED_FAILED
+      handleFeedFailed: FeedActions.FEED_FAILED,
+      handleRemoveItem: FeedActions.REMOVE_ITEM
     });
   }
 
@@ -36,6 +37,12 @@ class FeedStore {
 
   handleFeedFailed (err) {
     console.log(err);
+  }
+
+  handleRemoveItem (data) {
+    this.feed = this.feed.filter(function (item) {
+      return item.get('showId') !== data.showId && item.get('sien') !== data.sien;
+    });
   }
 
 }
