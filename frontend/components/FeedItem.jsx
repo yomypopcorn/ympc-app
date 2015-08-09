@@ -18,7 +18,9 @@ var FeedItem = React.createClass({
 
   getDefaultProps () {
     return {
-      placeholderClassName: 'feed-item-placeholder'
+      placeholderClassName: 'feed-item-placeholder',
+      topTreshold: 400,
+      bottomTreshold: 400
     };
   },
 
