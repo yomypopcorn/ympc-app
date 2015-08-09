@@ -65,6 +65,8 @@ var ShowsSubscriptions = React.createClass({
         </ReactCSSTransitionGroup>
         <ReactCSSTransitionGroup
           component="div"
+          transitionEnter={false}
+          transitionLeave={true}
           transitionName="list-item-remove">
           {showsList}
         </ReactCSSTransitionGroup>
