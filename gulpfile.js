@@ -16,6 +16,8 @@ var vendors = [
   'react',
   'react/addons',
   'react-lazyrender-mixin',
+  'react-swipe',
+  'classnames',
   'moment',
   'axios',
   'immutable',

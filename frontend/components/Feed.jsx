@@ -7,6 +7,8 @@ import FeedStore from '../stores/FeedStore';
 import FeedActions from '../actions/FeedActions';
 import FeedItem from './FeedItem';
 
+var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 var Feed = React.createClass({
 
   getInitialState () {
@@ -42,6 +44,7 @@ var Feed = React.createClass({
         episodeTitle={item.get('episode_title')}
         season={item.get('season')}
         episode={item.get('episode')}
+        sien={item.get('sien')}
         image={item.getPosterThumb()}
         firstAired={item.get('first_aired')}
         timestamp={item.get('timestamp')} />;
@@ -53,10 +56,14 @@ var Feed = React.createClass({
     }
 
     return (
-      <div>
-        {emptyState}
-        {feedItemList}
-      </div>
+      <ReactCSSTransitionGroup
+        component="div"
+        transitionEnter={false}
+        transitionLeave={true}
+        transitionName="list-item-remove">
+      {emptyState}
+      {feedItemList}
+      </ReactCSSTransitionGroup>
     );
   }
 

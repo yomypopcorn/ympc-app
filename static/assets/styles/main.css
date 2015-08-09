@@ -118,6 +118,22 @@ body, html {
   display: inline-block;
 }
 
+.btn.btn-danger {
+  background-color: #e74c3c;
+  border: 1px solid #e74c3c;
+  color: #fff;
+}
+
+.btn.btn-cancel {
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  color: #222;
+}
+
+.btn-row .btn {
+  margin-right: 1em;
+}
+
 input[type="search"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -156,6 +172,10 @@ input[type="search"]:focus {
   margin: 2em;
 }
 
+.feed-item.context-active .shadow {
+  background-color: rgba(35, 24, 42, 0.9);
+}
+
 .feed-item-placeholder {
   height: 400px;
 }
@@ -181,7 +201,12 @@ input[type="search"]:focus {
   position: relative;
 }
 
-.feed-item-body .title {
+.feed-item-body .feed-item-swipe-body {
+  position: relative;
+  height: 100%;
+}
+
+.feed-item-body .feed-item-content {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -202,9 +227,11 @@ input[type="search"]:focus {
 }
 
 .shadow {
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  background-color: rgba(35, 24, 42, 0.1);
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
   height: 100%;
   width: 100%;
+  transition: background-color 0.3s ease-out;
 }
 
 .tabs {
