@@ -40,7 +40,7 @@ class FeedStore {
   }
 
   handleRemoveItem (data) {
-    this.feed = this.feed.filter(function (item) {
+    this.feed = this.feed.filter(item => {
       return item.get('showId') !== data.showId && item.get('sien') !== data.sien;
     });
   }
