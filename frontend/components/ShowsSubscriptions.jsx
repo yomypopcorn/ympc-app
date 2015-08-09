@@ -60,6 +60,8 @@ var ShowsSubscriptions = React.createClass({
         {emptyState}
         <ReactCSSTransitionGroup
           component="div"
+          transitionEnter={false}
+          transitionLeave={true}
           transitionName="add-link">
           {topAddLink}
         </ReactCSSTransitionGroup>
