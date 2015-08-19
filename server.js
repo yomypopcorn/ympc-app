@@ -28,7 +28,7 @@ server.connection({
   address: server.settings.app.address,
   port: server.settings.app.port,
   uri: server.settings.app.uri,
-  routes: { cors: server.settings.app.enableCors }
+  routes: { cors: server.settings.app.cors }
 });
 
 var plugins = require('./plugins');
