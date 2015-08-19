@@ -2,6 +2,7 @@
 
 import React from 'react/addons';
 import {Link, State} from 'react-router';
+import Headroom from 'react-headroom';
 
 import LoginStore from '../stores/LoginStore';
 import LoginActions from '../actions/LoginActions';
@@ -27,10 +28,12 @@ var App = React.createClass({
   render () {
     return (
       <div>
-        <div className="tabs">
-          <Link to="/feed" className="tab" activeClassName="is-active" query={this.props.location.query}>Feed</Link>
-          <Link to="/shows" className="tab" activeClassName="is-active" query={this.props.location.query}>Shows</Link>
-        </div>
+        <Headroom>
+          <div className="tabs">
+            <Link to="/feed" className="tab" activeClassName="is-active" query={this.props.location.query}>Feed</Link>
+            <Link to="/shows" className="tab" activeClassName="is-active" query={this.props.location.query}>Shows</Link>
+          </div>
+        </Headroom>
         {this.props.children}
       </div>
     );
