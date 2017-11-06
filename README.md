@@ -1,4 +1,6 @@
 # yo-service
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fyomypopcorn%2Fympc-app.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fyomypopcorn%2Fympc-app?ref=badge_shield)
+
 yo service
 
 ## API
@@ -110,3 +112,7 @@ Responds 200
  "status": "ok"
 }
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fyomypopcorn%2Fympc-app.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fyomypopcorn%2Fympc-app?ref=badge_large)
